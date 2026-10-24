@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"primary-fixed":"#ffdbcb","on-error":"#ffffff","on-surface-variant":"#50443f","on-secondary-fixed":"#111c2d","outline-variant":"#d4c3bc","tertiary-container":"#003c28","surface-bright":"#f8f9ff","primary-fixed-dim":"#ecbca7","tertiary-fixed":"#85f8c4","surface-container-lowest":"#ffffff","surface-dim":"#cbdbf5","secondary-container":"#d5e0f8","surface-container":"#e5eeff","on-primary":"#ffffff","on-secondary-container":"#586377","on-surface":"#0b1c30","on-secondary-fixed-variant":"#3c475a","primary":"#31170a","tertiary-fixed-dim":"#68dba9","inverse-primary":"#ecbca7","on-primary-fixed-variant":"#603f2f","on-error-container":"#93000a","error-container":"#ffdad6","on-primary-container":"#be927e","outline":"#82746e","surface-container-low":"#eff4ff","surface-tint":"#7a5645","secondary":"#545f73","on-tertiary":"#ffffff","inverse-on-surface":"#eaf1ff","on-background":"#0b1c30","on-tertiary-fixed-variant":"#005137","error":"#ba1a1a","surface-container-high":"#dce9ff","primary-container":"#4a2c1d","on-secondary":"#ffffff","on-tertiary-container":"#36af80","secondary-fixed":"#d8e3fb","surface-container-highest":"#d3e4fe","background":"#f8f9ff","inverse-surface":"#213145","secondary-fixed-dim":"#bcc7de","on-primary-fixed":"#2e1508","surface":"#f8f9ff","surface-variant":"#d3e4fe","on-tertiary-fixed":"#002114","tertiary":"#002416"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter-tablet":"0.75rem","space-xs":"0.25rem","space-lg":"1.5rem","space-xl":"2rem","space-sm":"0.5rem","margin":"1rem","margin-desktop":"1.5rem","gutter":"1rem","margin-tablet":"1.25rem","gutter-desktop":"1.25rem","space-md":"1rem"},"fontFamily":{"display-lg-mobile":["Plus Jakarta Sans"],"numeral-lg":["Space Grotesk"],"numeral-md":["Space Grotesk"],"display-lg":["Plus Jakarta Sans"],"label-md":["Space Grotesk"],"headline-sm":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"label-sm":["Space Grotesk"],"headline-lg":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"label-lg":["Space Grotesk"],"body-sm":["Plus Jakarta Sans"]},"fontSize":{"display-lg-mobile":["30px",{"lineHeight":"38px","letterSpacing":"-0.02em","fontWeight":"700"}],"numeral-lg":["32px",{"lineHeight":"36px","letterSpacing":"-0.01em","fontWeight":"700"}],"numeral-md":["20px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"700"}],"display-lg":["40px",{"lineHeight":"48px","letterSpacing":"-0.02em","fontWeight":"700"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.03em","fontWeight":"600"}],"headline-sm":["18px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"500"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.02em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}]}}}}</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between"><div class="flex flex-col"><div class="h-28 px-space-md flex items-center gap-space-sm bg-surface-container-lowest"><img alt="Artisan Cafe POS Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQn87G-dopE59uw0bmDWqPH7Ad2s9LGWBh_-CvU_syem9z4aHRqusKBx1kU94MOFBOg9tAT9FXyhZB456bHBiveXMrcZSNIpH0EeUd6otEor1wggRhlb4L8toHckC_EacLyei7dT8MRVb8FgSgHf1KKtwN1BA8jplUTQp0uOFaCawoqblYDk0NuMR5Z-g9PG4SSPRRmaTTNY0cN4kUNK84vdpZbtFKo5-YFliCKPEoTvTjJHIWfPLv"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary tracking-tight leading-none">Velvet Roast</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-1">Terminal #01 · POS</span></div></div><div class="px-space-md py-space-xs"><div class="font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-space-xs px-space-sm">Operations</div><nav class="flex flex-col gap-1" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="floor-plan" href="#"><span class="material-symbols-outlined text-[20px]">table_restaurant</span><span class="font-label-lg text-label-lg">Floor Plan</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="order-register" href="#"><span class="material-symbols-outlined text-[20px]">point_of_sale</span><span class="font-label-lg text-label-lg">Order Register</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="active-kitchen" href="#"><span class="material-symbols-outlined text-[20px]">skillet</span><span class="font-label-lg text-label-lg">Kitchen Display</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="order-history" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span class="font-label-lg text-label-lg">Transactions</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="inventory-catalog" href="#"><span class="material-symbols-outlined text-[20px]">inventory_2</span><span class="font-label-lg text-label-lg">Inventory Stock</span></a></nav></div><div class="px-space-md py-space-xs mt-space-sm"><div class="font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-space-xs px-space-sm">Management</div><nav class="flex flex-col gap-1" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="daily-reports" href="#"><span class="material-symbols-outlined text-[20px]">monitoring</span><span class="font-label-lg text-label-lg">Daily Analytics</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="shift-management" href="#"><span class="material-symbols-outlined text-[20px]">badge</span><span class="font-label-lg text-label-lg">Staff &amp; Shifts</span></a></nav></div></div><div class="p-space-md bg-surface-container-low"><div class="flex items-center justify-between mb-space-xs"><span class="font-label-sm text-label-sm text-secondary uppercase">Drawer Balance</span><span class="font-numeral-md text-numeral-md text-primary">$420.00</span></div><button class="w-full flex items-center justify-center gap-space-xs py-2 bg-surface-container-highest text-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[18px]">lock_clock</span>End Shift &amp; Close</button></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 z-40 bg-surface-container-lowest/95 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-gutter-desktop flex items-center justify-between"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-secondary text-[20px]">schedule</span><span class="font-numeral-md text-numeral-md text-on-surface">10:42 AM</span><span class="font-body-sm text-body-sm text-secondary">· Friday, Oct 24</span></div><div class="h-4 w-px bg-surface-container-highest"></div><div class="inline-flex items-center gap-space-xs px-2.5 py-1 rounded-full bg-[#ECFDF5] text-[#065F46] cursor-pointer hover:bg-[#D1FAE5] transition-colors"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-[#059669]"></span></span><span class="font-label-sm text-label-sm">Network Status: Online</span></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm bg-surface-container-low px-3 py-1.5 rounded-lg"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2Csfb-q8iLpYiMby114bD3OyIZRzByUTg6IDY4tkxLAA8SGqmwm6xS6mwXyEqN4ykdGlu1o8Mmz1eEfm2MUfX_eRjQ2GbJHJUBacPG0355rLGL9AyHefuvU9lGdiXBe7zKFI2TQ0DEzI19_I7loA72VN3MsIgBcD2xiwIkJO3Q9WKxsTEpnLTB7P_nuUiPSdG80YbiU78kpudXu1tImCtX14HN_Snp_VFTlr1p-PsnN611Jn9YuEA"/><div class="flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface leading-tight">Sarah Jenkins</span><span class="font-label-sm text-label-sm text-secondary leading-none">Senior Barista</span></div></div><div class="flex items-center gap-1"><button class="w-9 h-9 flex items-center justify-center rounded-lg text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Quick Settings" type="button"><span class="material-symbols-outlined text-[20px]">settings</span></button><button class="w-9 h-9 flex items-center justify-center rounded-lg text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Lock Terminal" type="button"><span class="material-symbols-outlined text-[20px]">lock</span></button></div></div></div><div class="h-12 px-gutter-desktop bg-surface-container-low flex items-center justify-between"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs"><span class="font-label-sm text-label-sm text-secondary uppercase">Floor Cap:</span><span class="font-numeral-md text-numeral-md text-primary">78%</span><span class="font-body-sm text-body-sm text-secondary">(31/40)</span></div><div class="h-3 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-xs"><span class="font-label-sm text-label-sm text-secondary uppercase">Active Orders:</span><span class="font-numeral-md text-numeral-md text-primary">14</span></div><div class="h-3 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-xs"><span class="font-label-sm text-label-sm text-secondary uppercase">Revenue Today:</span><span class="font-numeral-md text-numeral-md text-primary">$2,845.50</span></div></div><div class="flex items-center gap-1 bg-surface-container-highest/60 p-1 rounded-lg"><button class="px-3 py-1 rounded bg-surface-container-lowest shadow-[0_1px_4px_rgba(0,0,0,0.04)] font-label-sm text-label-sm text-primary" type="button">Main Floor</button><button class="px-3 py-1 rounded font-label-sm text-label-sm text-secondary hover:text-on-surface hover:bg-surface-container-lowest/50 transition-colors" type="button">Patio Garden</button><button class="px-3 py-1 rounded font-label-sm text-label-sm text-secondary hover:text-on-surface hover:bg-surface-container-lowest/50 transition-colors" type="button">Mezzanine</button><button class="px-3 py-1 rounded font-label-sm text-label-sm text-secondary hover:text-on-surface hover:bg-surface-container-lowest/50 transition-colors" type="button">Takeaway Bar</button></div></div></header><main class="relative pt-28 w-full bg-background min-h-screen"><div class="flex flex-col w-full relative min-h-[calc(100vh-7rem)] overflow-hidden">
+<!-- Backdrop Simulated Ambient Workspace -->
+<div class="absolute inset-0 p-gutter-desktop grid grid-cols-12 gap-gutter-desktop pointer-events-none select-none opacity-40 blur-[5px] scale-[0.99] transition-all">
+<!-- Mock Left Register Grid -->
+<div class="col-span-8 flex flex-col gap-space-md">
+<div class="flex items-center justify-between bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex items-center gap-space-sm">
+<span class="w-3 h-3 rounded-full bg-tertiary-fixed-dim"></span>
+<span class="font-headline-sm text-headline-sm text-primary">Main Cafe Floor · Zone A</span>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-surface-container rounded-lg font-label-md text-label-md text-secondary">Table 01 (Busy)</span>
+<span class="px-3 py-1 bg-primary text-on-primary rounded-lg font-label-md text-label-md">Table 04 (Billing)</span>
+<span class="px-3 py-1 bg-surface-container rounded-lg font-label-md text-label-md text-secondary">Table 08 (Free)</span>
+</div>
+</div>
+<div class="grid grid-cols-4 gap-space-sm">
+<div class="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm flex flex-col gap-2">
+<div class="h-24 bg-surface-container rounded-lg"></div>
+<span class="font-headline-sm text-headline-sm text-primary">Cortado Special</span>
+<span class="font-numeral-md text-numeral-md text-secondary">₹180</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm flex flex-col gap-2">
+<div class="h-24 bg-surface-container rounded-lg"></div>
+<span class="font-headline-sm text-headline-sm text-primary">Truffle Fries</span>
+<span class="font-numeral-md text-numeral-md text-secondary">₹240</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm flex flex-col gap-2">
+<div class="h-24 bg-surface-container rounded-lg"></div>
+<span class="font-headline-sm text-headline-sm text-primary">Classic Croissant</span>
+<span class="font-numeral-md text-numeral-md text-secondary">₹150</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm flex flex-col gap-2">
+<div class="h-24 bg-surface-container rounded-lg"></div>
+<span class="font-headline-sm text-headline-sm text-primary">Single Cold Brew</span>
+<span class="font-numeral-md text-numeral-md text-secondary">₹100</span>
+</div>
+</div>
+</div>
+<!-- Mock Right Order Check Column -->
+<div class="col-span-4 bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm flex flex-col justify-between">
+<div class="flex flex-col gap-3">
+<span class="font-label-lg text-label-lg text-secondary uppercase tracking-wider">Active Ticket #1092</span>
+<div class="h-8 bg-surface-container rounded"></div>
+<div class="h-8 bg-surface-container rounded"></div>
+<div class="h-8 bg-surface-container rounded"></div>
+</div>
+<div class="p-space-md bg-surface-container-low rounded-xl">
+<div class="flex justify-between font-numeral-lg text-numeral-lg text-primary">
+<span>Total</span>
+<span>₹850.00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal Presentation Overlay Scrim -->
+<div class="relative z-50 flex items-center justify-center p-space-sm sm:p-space-md lg:p-space-lg my-auto min-h-[calc(100vh-7rem)] bg-on-surface/40 backdrop-blur-md">
+<!-- Central Interactive Payment Modal Frame -->
+<div class="w-full max-w-5xl bg-surface-container-lowest rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[942px] transition-all duration-300 transform">
+<!-- Top Modal Header Bar -->
+<div class="px-space-lg py-space-md bg-surface-container-lowest flex items-center justify-between border-b-0 shadow-sm relative z-20">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary-container text-on-primary flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[26px]">point_of_sale</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm">
+<h2 class="font-headline-md text-headline-md text-primary tracking-tight">Checkout — Table 4</h2>
+<span class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-numeral-md text-numeral-md">₹850.00</span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Ready to Tender
+              </span>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm mt-0.5">
+<span class="font-label-sm text-label-sm text-secondary font-semibold">TICKET #1092</span>
+<span>•</span>
+<span>4 Guests</span>
+<span>•</span>
+<span>Server: Sarah Jenkins</span>
+<span>•</span>
+<span class="inline-flex items-center gap-1 text-primary font-medium">
+<span class="material-symbols-outlined text-[14px]">table_restaurant</span> Table 04 (Round)
+              </span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary hover:text-on-surface font-label-md text-label-md flex items-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">receipt</span> View Guest Check
+          </button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-secondary hover:bg-surface-container hover:text-primary transition-all ml-1" onclick="window.history.back()" title="Close Checkout Modal" type="button">
+<span class="material-symbols-outlined text-[24px]">close</span>
+</button>
+</div>
+</div>
+<!-- Main Modal Dual Zone Body -->
+<div class="grid grid-cols-12 flex-1 overflow-y-auto bg-surface-bright divide-x-0">
+<!-- Left Zone: Bill Splitting & Breakdown (5 cols) -->
+<div class="col-span-12 lg:col-span-5 p-space-md lg:p-space-lg flex flex-col gap-space-md bg-surface-container-low/60">
+<!-- Mode Tabs: Standard vs Split Bill -->
+<div class="bg-surface-container-highest/80 p-1 rounded-xl flex items-center shadow-inner">
+<button class="flex-1 py-2 text-center rounded-lg font-label-md text-label-md text-secondary hover:text-on-surface transition-all flex items-center justify-center gap-1.5" id="tab-standard" onclick="switchMainTab('standard')" type="button">
+<span class="material-symbols-outlined text-[18px]">payments</span>
+              Single Bill
+            </button>
+<button class="flex-1 py-2 text-center rounded-lg font-label-md text-label-md bg-surface-container-lowest text-primary shadow-sm transition-all flex items-center justify-center gap-1.5 font-bold" id="tab-split" onclick="switchMainTab('split')" type="button">
+<span class="material-symbols-outlined text-[18px]">call_split</span>
+              Split Bill (Active)
+            </button>
+</div>
+<!-- Split Sub-Controls Navigation -->
+<div class="flex flex-col gap-space-md" id="split-controls-container">
+<div class="flex items-center justify-between bg-surface-container-lowest p-1.5 rounded-xl shadow-sm">
+<button class="flex-1 py-1.5 px-3 rounded-lg font-label-sm text-label-sm bg-primary-container text-on-primary font-semibold flex items-center justify-center gap-1 transition-all" id="subtab-equal" onclick="switchSplitSubtab('equal')" type="button">
+<span class="material-symbols-outlined text-[16px]">pie_chart</span> Split Equally
+              </button>
+<button class="flex-1 py-1.5 px-3 rounded-lg font-label-sm text-label-sm text-secondary hover:text-on-surface font-semibold flex items-center justify-center gap-1 transition-all" id="subtab-item" onclick="switchSplitSubtab('item')" type="button">
+<span class="material-symbols-outlined text-[16px]">checklist</span> Split by Item
+              </button>
+</div>
+<!-- VIEW 1: Split Equally -->
+<div class="flex flex-col gap-space-md" id="view-split-equal">
+<!-- Guest Count Adjuster Card -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-wider">Party Size Distribution</span>
+<span class="font-label-sm text-label-sm text-on-tertiary-container bg-tertiary-container/10 px-2 py-0.5 rounded-full font-medium">Automatic division</span>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-space-sm">
+<button class="w-11 h-11 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary flex items-center justify-center font-headline-sm transition-transform active:scale-95 shadow-sm" onclick="adjustGuests(-1)" type="button">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<div class="flex flex-col items-center min-w-[70px]">
+<span class="font-numeral-lg text-numeral-lg text-primary leading-none" id="guest-count-label">4</span>
+<span class="font-label-sm text-label-sm text-secondary">Guests</span>
+</div>
+<button class="w-11 h-11 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary flex items-center justify-center font-headline-sm transition-transform active:scale-95 shadow-sm" onclick="adjustGuests(1)" type="button">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-secondary block">Amount / Guest</span>
+<span class="font-numeral-lg text-numeral-lg text-primary tracking-tight" id="per-guest-label">₹212.50</span>
+</div>
+</div>
+<div class="mt-2 p-2.5 bg-surface-container-low rounded-lg flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Formula: ₹850 ÷ 4 Guests</span>
+<span class="font-semibold text-primary">₹212.50 ea</span>
+</div>
+</div>
+<!-- Guest Payment Status Tracking Cards -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-1">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-wider">Guest Payment Tracker</span>
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm">
+<span class="text-secondary">Balance:</span>
+<span class="font-numeral-md text-numeral-md text-error font-bold" id="tracker-remaining">₹425.00</span>
+</div>
+</div>
+<!-- Guest Tracker List -->
+<div class="flex flex-col gap-2">
+<!-- Guest 1 (Paid) -->
+<div class="p-2.5 rounded-lg bg-surface-container-low flex items-center justify-between transition-all">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-full bg-[#ECFDF5] text-[#065F46] flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Guest 1</span>
+<span class="font-label-sm text-label-sm text-secondary">Tendered via Cash</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-numeral-md text-numeral-md text-primary">₹212.50</span>
+<span class="px-2 py-0.5 rounded-full bg-[#ECFDF5] text-[#065F46] font-label-sm text-label-sm font-semibold">Paid</span>
+</div>
+</div>
+<!-- Guest 2 (Paid) -->
+<div class="p-2.5 rounded-lg bg-surface-container-low flex items-center justify-between transition-all">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-full bg-[#ECFDF5] text-[#065F46] flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Guest 2</span>
+<span class="font-label-sm text-label-sm text-secondary">Tendered via Card</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-numeral-md text-numeral-md text-primary">₹212.50</span>
+<span class="px-2 py-0.5 rounded-full bg-[#ECFDF5] text-[#065F46] font-label-sm text-label-sm font-semibold">Paid</span>
+</div>
+</div>
+<!-- Guest 3 (Pending Active Target) -->
+<div class="p-2.5 rounded-lg bg-primary-fixed/30 border-l-4 border-primary flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">hourglass_top</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">Guest 3 (Current)</span>
+<span class="font-label-sm text-label-sm text-on-primary-fixed-variant">Ready to scan QR</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-numeral-md text-numeral-md text-primary font-bold">₹212.50</span>
+<span class="px-2 py-0.5 rounded-full bg-[#FFFBEB] text-[#92400E] font-label-sm text-label-sm font-semibold animate-pulse">Pending</span>
+</div>
+</div>
+<!-- Guest 4 (Pending) -->
+<div class="p-2.5 rounded-lg bg-surface-container-low flex items-center justify-between opacity-80">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-full bg-surface-container-highest text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Guest 4</span>
+<span class="font-label-sm text-label-sm text-secondary">Awaiting turn</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-numeral-md text-numeral-md text-secondary">₹212.50</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-secondary font-label-sm text-label-sm">Queued</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- VIEW 2: Split by Item (Initially hidden, toggleable) -->
+<div class="hidden flex flex-col gap-space-md" id="view-split-item">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between border-b pb-2">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-wider">Item Allocation</span>
+<div class="flex gap-2">
+<span class="px-2 py-0.5 rounded bg-primary-container text-on-primary font-label-sm text-label-sm">Person A: ₹460</span>
+<span class="px-2 py-0.5 rounded bg-secondary text-on-secondary font-label-sm text-label-sm">Person B: ₹390</span>
+</div>
+</div>
+<!-- Checklist of Items -->
+<div class="flex flex-col gap-2 pt-1">
+<!-- Item 1 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2">
+<input checked="" class="w-4 h-4 rounded text-primary accent-primary" type="checkbox"/>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary leading-tight">2x Velvet Cappuccino</span>
+<span class="font-label-sm text-label-sm text-secondary">Oat Milk + Extra Shot</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-numeral-md text-numeral-md text-primary">₹360.00</span>
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm">Person A</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2">
+<input checked="" class="w-4 h-4 rounded text-primary accent-primary" type="checkbox"/>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary leading-tight">1x Truffle Fries</span>
+<span class="font-label-sm text-label-sm text-secondary">Rosemary Parmesan</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-numeral-md text-numeral-md text-primary">₹240.00</span>
+<span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">Person B</span>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2">
+<input checked="" class="w-4 h-4 rounded text-primary accent-primary" type="checkbox"/>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary leading-tight">1x Butter Croissant</span>
+<span class="font-label-sm text-label-sm text-secondary">Warm Butter Dip</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-numeral-md text-numeral-md text-primary">₹150.00</span>
+<span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">Person B</span>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2">
+<input checked="" class="w-4 h-4 rounded text-primary accent-primary" type="checkbox"/>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary leading-tight">1x Nitro Cold Brew</span>
+<span class="font-label-sm text-label-sm text-secondary">Ethiopia Yirgacheffe</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-numeral-md text-numeral-md text-primary">₹100.00</span>
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm">Person A</span>
+</div>
+</div>
+</div>
+<div class="p-2.5 mt-1 bg-surface-container rounded-lg flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-secondary">Assigned Items: 4/4</span>
+<span class="font-bold text-primary">Sum Total: ₹850.00 (Balanced)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Zone: Dynamic Payment Execution & Gateway Tabs (7 cols) -->
+<div class="col-span-12 lg:col-span-7 p-space-md lg:p-space-lg flex flex-col justify-between gap-space-md bg-surface-container-lowest">
+<div class="flex flex-col gap-space-md">
+<!-- Payment Mode Selector Tabs -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Select Payment Method</span>
+<span class="font-label-sm text-label-sm text-tertiary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">verified_user</span> Instant Settlement
+                </span>
+</div>
+<div class="grid grid-cols-3 gap-2.5">
+<!-- 1. Cash Tab -->
+<button class="p-3 rounded-xl border-2 border-transparent bg-surface-container-low hover:bg-surface-container transition-all flex flex-col items-center gap-1.5 text-center group" id="pay-cash-btn" onclick="selectPayMethod('cash')" type="button">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest group-hover:bg-surface-container-lowest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">payments</span>
+</div>
+<span class="font-label-md text-label-md text-primary font-bold">Cash Counter</span>
+<span class="font-label-sm text-label-sm text-secondary">Quick tender &amp; change</span>
+</button>
+<!-- 2. Card Tab -->
+<button class="p-3 rounded-xl border-2 border-transparent bg-surface-container-low hover:bg-surface-container transition-all flex flex-col items-center gap-1.5 text-center group" id="pay-card-btn" onclick="selectPayMethod('card')" type="button">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest group-hover:bg-surface-container-lowest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">credit_card</span>
+</div>
+<span class="font-label-md text-label-md text-primary font-bold">POS Terminal</span>
+<div class="flex items-center gap-1 text-[10px] text-secondary font-semibold uppercase">
+<span>Visa</span>•<span>MC</span>•<span>RuPay</span>
+</div>
+</button>
+<!-- 3. UPI / Dynamic QR (Active Default) -->
+<button class="p-3 rounded-xl border-2 border-primary-container bg-primary-fixed/20 shadow-sm flex flex-col items-center gap-1.5 text-center relative overflow-hidden" id="pay-upi-btn" onclick="selectPayMethod('upi')" type="button">
+<div class="absolute top-1.5 right-1.5 flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary-fixed opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-tertiary"></span>
+</div>
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[22px]">qr_code_scanner</span>
+</div>
+<span class="font-label-md text-label-md text-primary font-bold">UPI Dynamic QR</span>
+<span class="font-label-sm text-label-sm text-on-primary-fixed-variant font-medium">GPay, PhonePe, BHIM</span>
+</button>
+</div>
+</div>
+<!-- PAYMENT CONTENT CONTAINER -->
+<!-- PANEL 1: UPI / QR Code Active Container -->
+<div class="flex flex-col gap-space-sm bg-surface-container-low/70 p-space-md rounded-2xl relative" id="method-panel-upi">
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-tertiary-container text-on-tertiary font-label-sm text-label-sm uppercase tracking-wider font-semibold">Zero MDR FastPay</span>
+<span class="font-body-sm text-body-sm text-secondary">Scan to pay for Guest #3</span>
+</div>
+<!-- Dynamic Timer -->
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm bg-surface-container px-2.5 py-1 rounded-full text-secondary">
+<span class="material-symbols-outlined text-[16px] text-error">timer</span>
+<span>QR expires in <strong class="font-numeral-md text-numeral-md text-primary" id="qr-timer">04:45</strong></span>
+</div>
+</div>
+<!-- Main Interactive QR Presentation -->
+<div class="flex flex-col sm:flex-row items-center gap-space-md bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<!-- QR Code Block with stylized laser scanner effect -->
+<div class="relative w-44 h-44 bg-surface-container-lowest p-2.5 rounded-xl border border-surface-container flex flex-col items-center justify-center shadow-inner group">
+<!-- QR corner decorative guides -->
+<div class="absolute top-2 left-2 w-3.5 h-3.5 border-t-2 border-l-2 border-primary"></div>
+<div class="absolute top-2 right-2 w-3.5 h-3.5 border-t-2 border-r-2 border-primary"></div>
+<div class="absolute bottom-2 left-2 w-3.5 h-3.5 border-b-2 border-l-2 border-primary"></div>
+<div class="absolute bottom-2 right-2 w-3.5 h-3.5 border-b-2 border-r-2 border-primary"></div>
+<!-- Mock Pixelated High-Fidelity Scalable QR Representation -->
+<div class="w-full h-full bg-surface-container-low rounded p-2 flex flex-col justify-between overflow-hidden relative">
+<!-- Laser line pulse -->
+<div class="absolute inset-x-0 h-0.5 bg-tertiary-fixed shadow-[0_0_8px_#36af80] opacity-80 animate-bounce top-1/2"></div>
+<div class="grid grid-cols-5 gap-1.5 w-full h-full">
+<div class="bg-primary rounded-sm col-span-2 row-span-2 flex items-center justify-center p-1">
+<div class="w-full h-full bg-surface-container-lowest rounded-sm flex items-center justify-center">
+<div class="w-3 h-3 bg-primary rounded-xs"></div>
+</div>
+</div>
+<div class="bg-primary rounded-xs"></div>
+<div class="bg-primary rounded-sm col-span-2 row-span-2 flex items-center justify-center p-1">
+<div class="w-full h-full bg-surface-container-lowest rounded-sm flex items-center justify-center">
+<div class="w-3 h-3 bg-primary rounded-xs"></div>
+</div>
+</div>
+<div class="bg-primary rounded-xs"></div>
+<div class="bg-primary rounded-xs"></div>
+<div class="bg-primary rounded-xs"></div>
+<div class="bg-primary rounded-xs"></div>
+<div class="bg-primary rounded-xs"></div>
+<div class="bg-primary rounded-sm col-span-2 row-span-2 flex items-center justify-center p-1">
+<div class="w-full h-full bg-surface-container-lowest rounded-sm flex items-center justify-center">
+<div class="w-3 h-3 bg-primary rounded-xs"></div>
+</div>
+</div>
+<div class="bg-primary rounded-xs"></div>
+<div class="bg-primary rounded-xs"></div>
+<div class="bg-primary rounded-xs"></div>
+<div class="bg-primary rounded-xs"></div>
+<div class="bg-primary rounded-xs"></div>
+</div>
+<!-- Velvet Roast Mini Watermark Emblem Center -->
+<div class="absolute inset-0 m-auto w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-lg border-2 border-surface-container-lowest">
+<span class="material-symbols-outlined text-[16px]">coffee</span>
+</div>
+</div>
+</div>
+<!-- UPI Details & Accepted Providers -->
+<div class="flex-1 flex flex-col gap-2.5">
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Amount to tender:</span>
+<div class="font-numeral-lg text-numeral-lg text-primary leading-tight">₹212.50</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Allocated portion for Guest 3</span>
+</div>
+<!-- Quick Copy VPA Widget -->
+<div class="p-2 bg-surface-container-low rounded-lg flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary">Merchant UPI VPA</span>
+<span class="font-label-md text-label-md text-primary font-mono select-all">velvetroast.pos@icici</span>
+</div>
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest hover:bg-surface-container text-primary font-label-sm text-label-sm shadow-xs transition-colors flex items-center gap-1" onclick="navigator.clipboard.writeText('velvetroast.pos@icici')" type="button">
+<span class="material-symbols-outlined text-[15px]">content_copy</span> Copy
+                    </button>
+</div>
+<!-- Supported App Glyphs / Logos -->
+<div class="flex items-center gap-2 pt-0.5">
+<span class="px-2 py-0.5 bg-surface-container-high rounded text-[11px] font-bold text-on-surface">BHIM</span>
+<span class="px-2 py-0.5 bg-surface-container-high rounded text-[11px] font-bold text-on-surface">Google Pay</span>
+<span class="px-2 py-0.5 bg-surface-container-high rounded text-[11px] font-bold text-on-surface">PhonePe</span>
+<span class="px-2 py-0.5 bg-surface-container-high rounded text-[11px] font-bold text-on-surface">Paytm</span>
+</div>
+</div>
+</div>
+</div>
+<!-- PANEL 2: Cash Payment Quick Tender (Hidden by Default) -->
+<div class="hidden flex flex-col gap-space-sm bg-surface-container-low/70 p-space-md rounded-2xl" id="method-panel-cash">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Cash Denomination Quick-Pick</span>
+<div class="grid grid-cols-3 gap-2">
+<button class="p-3 bg-surface-container-lowest rounded-xl shadow-sm hover:bg-primary-container hover:text-on-primary transition-all text-center" onclick="calcCashChange(850)" type="button">
+<span class="font-label-sm text-label-sm block opacity-70">Exact Value</span>
+<span class="font-numeral-md text-numeral-md">₹850.00</span>
+</button>
+<button class="p-3 bg-surface-container-lowest rounded-xl shadow-sm hover:bg-primary-container hover:text-on-primary transition-all text-center" onclick="calcCashChange(1000)" type="button">
+<span class="font-label-sm text-label-sm block opacity-70">Single Note</span>
+<span class="font-numeral-md text-numeral-md">₹1,000.00</span>
+</button>
+<button class="p-3 bg-surface-container-lowest rounded-xl shadow-sm hover:bg-primary-container hover:text-on-primary transition-all text-center" onclick="calcCashChange(2000)" type="button">
+<span class="font-label-sm text-label-sm block opacity-70">High Note</span>
+<span class="font-numeral-md text-numeral-md">₹2,000.00</span>
+</button>
+</div>
+<div class="p-space-sm bg-surface-container-lowest rounded-xl flex items-center justify-between" id="cash-change-display">
+<span class="font-label-md text-label-md text-secondary">Tendered: <strong class="text-primary font-numeral-md">₹1,000.00</strong></span>
+<span class="font-label-md text-label-md text-tertiary">Return Change: <strong class="text-primary font-numeral-md">₹150.00</strong></span>
+</div>
+</div>
+<!-- PANEL 3: Card Hardware Terminal (Hidden by Default) -->
+<div class="hidden flex flex-col gap-space-sm bg-surface-container-low/70 p-space-md rounded-2xl text-center" id="method-panel-card">
+<div class="py-4 flex flex-col items-center justify-center gap-2">
+<div class="w-16 h-16 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary shadow-sm animate-pulse">
+<span class="material-symbols-outlined text-[36px]">contactless</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary">Terminal #01 Ready</span>
+<span class="font-body-sm text-body-sm text-secondary">Tap contactless card or insert chip into Ingenico Desk 5000</span>
+</div>
+</div>
+</div>
+<!-- Actions & Simulation Footer -->
+<div class="flex flex-col gap-space-sm pt-2 border-t-0">
+<!-- Large Primary Action Button: Simulate Payment -->
+<button class="w-full h-14 rounded-xl bg-tertiary-container hover:bg-tertiary text-on-tertiary flex items-center justify-center gap-2 font-headline-sm text-headline-sm shadow-lg transition-transform active:scale-[0.99]" onclick="triggerSuccessState()" type="button">
+<span class="material-symbols-outlined text-[24px]">task_alt</span>
+              Simulate Successful Payment (₹212.50)
+            </button>
+<!-- Auxiliary Action Row -->
+<div class="flex items-center justify-between gap-2 pt-1">
+<button class="flex-1 py-2.5 px-3 rounded-lg bg-surface-container-low hover:bg-surface-container text-primary font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">print</span>
+                Print Bill Receipt
+              </button>
+<button class="flex-1 py-2.5 px-3 rounded-lg bg-surface-container-low hover:bg-surface-container text-primary font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors" title="SMS / WhatsApp e-Invoice" type="button">
+<span class="material-symbols-outlined text-[18px]">send_to_mobile</span>
+                SMS +91 98765 43210
+              </button>
+<button class="py-2.5 px-4 rounded-lg bg-error-container/40 hover:bg-error-container text-on-error-container font-label-md text-label-md flex items-center justify-center gap-1 transition-colors" onclick="window.history.back()" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+                Cancel
+              </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Modal Persistent Bottom Feedback Notification Bar -->
+<div class="hidden px-space-lg py-2.5 bg-[#ECFDF5] border-t-0 text-[#065F46] flex items-center justify-between" id="payment-toast">
+<div class="flex items-center gap-2 font-label-md text-label-md">
+<span class="material-symbols-outlined text-[20px] text-[#059669]">check_circle</span>
+<span>Payment Authorized! Batch Reference: <strong>#VR-891024</strong>. Receipt sent to server console.</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-bold">Auto-Syncing KDS...</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+  let currentGuestCount = 4;
+  const billTotal = 850.0;
+
+  function switchMainTab(tab) {
+    const stdBtn = document.getElementById('tab-standard');
+    const splBtn = document.getElementById('tab-split');
+    const splitCtrl = document.getElementById('split-controls-container');
+
+    if (tab === 'standard') {
+      stdBtn.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-sm', 'font-bold');
+      stdBtn.classList.remove('text-secondary');
+      splBtn.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-sm', 'font-bold');
+      splBtn.classList.add('text-secondary');
+      splitCtrl.classList.add('opacity-40', 'pointer-events-none');
+    } else {
+      splBtn.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-sm', 'font-bold');
+      splBtn.classList.remove('text-secondary');
+      stdBtn.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-sm', 'font-bold');
+      stdBtn.classList.add('text-secondary');
+      splitCtrl.classList.remove('opacity-40', 'pointer-events-none');
+    }
+  }
+
+  function switchSplitSubtab(sub) {
+    const btnEq = document.getElementById('subtab-equal');
+    const btnIt = document.getElementById('subtab-item');
+    const vEq = document.getElementById('view-split-equal');
+    const vIt = document.getElementById('view-split-item');
+
+    if (sub === 'equal') {
+      btnEq.classList.add('bg-primary-container', 'text-on-primary');
+      btnEq.classList.remove('text-secondary');
+      btnIt.classList.remove('bg-primary-container', 'text-on-primary');
+      btnIt.classList.add('text-secondary');
+      vEq.classList.remove('hidden');
+      vIt.classList.add('hidden');
+    } else {
+      btnIt.classList.add('bg-primary-container', 'text-on-primary');
+      btnIt.classList.remove('text-secondary');
+      btnEq.classList.remove('bg-primary-container', 'text-on-primary');
+      btnEq.classList.add('text-secondary');
+      vIt.classList.remove('hidden');
+      vEq.classList.add('hidden');
+    }
+  }
+
+  function adjustGuests(delta) {
+    currentGuestCount = Math.max(1, Math.min(10, currentGuestCount + delta));
+    document.getElementById('guest-count-label').textContent = currentGuestCount;
+    const splitAmt = (billTotal / currentGuestCount).toFixed(2);
+    document.getElementById('per-guest-label').textContent = '₹' + splitAmt;
+  }
+
+  function selectPayMethod(method) {
+    const panels = ['upi', 'cash', 'card'];
+    panels.forEach(p => {
+      const el = document.getElementById('method-panel-' + p);
+      const btn = document.getElementById('pay-' + p + '-btn');
+      if (p === method) {
+        el.classList.remove('hidden');
+        btn.classList.add('border-primary-container', 'bg-primary-fixed/20');
+        btn.classList.remove('border-transparent', 'bg-surface-container-low');
+      } else {
+        el.classList.add('hidden');
+        btn.classList.remove('border-primary-container', 'bg-primary-fixed/20');
+        btn.classList.add('border-transparent', 'bg-surface-container-low');
+      }
+    });
+  }
+
+  function calcCashChange(amount) {
+    const change = amount - billTotal;
+    const disp = document.getElementById('cash-change-display');
+    disp.innerHTML = `
+      <span class="font-label-md text-label-md text-secondary">Tendered: <strong class="text-primary font-numeral-md">₹${amount.toFixed(2)}</strong></span>
+      <span class="font-label-md text-label-md text-tertiary">Return Change: <strong class="text-primary font-numeral-md">₹${change.toFixed(2)}</strong></span>
+    `;
+  }
+
+  function triggerSuccessState() {
+    const toast = document.getElementById('payment-toast');
+    toast.classList.remove('hidden');
+    const remaining = document.getElementById('tracker-remaining');
+    if (remaining) remaining.textContent = '₹212.50';
+  }
+
+  // QR Expiry countdown demo
+  let timeLeft = 285;
+  setInterval(() => {
+    if (timeLeft > 0) {
+      timeLeft--;
+      const mins = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+      const secs = String(timeLeft % 60).padStart(2, '0');
+      const timerEl = document.getElementById('qr-timer');
+      if (timerEl) timerEl.textContent = `${mins}:${secs}`;
+    }
+  }, 1000);
+</script></main></div>
+<script>
+// --- LIVE CHECKOUT INTEGRATION FOR VELVET ROAST POS ---
+let currentOrderId = new URLSearchParams(window.location.search).get('order_id') || 'ord-04';
+let currentOrderData = null;
+let currentPaymentMethod = 'CREDIT_CARD';
+let currentTipAmount = 0.0;
+
+async function loadCheckoutData() {
+  try {
+    const res = await fetch(`/api/checkout/preview/${currentOrderId}`);
+    if (!res.ok) {
+      console.warn('Could not load checkout data for', currentOrderId);
+      return;
+    }
+    currentOrderData = await res.json();
+    renderCheckout();
+  } catch (err) {
+    console.error('Error loading checkout:', err);
+  }
+}
+
+function renderCheckout() {
+  if (!currentOrderData) return;
+
+  // Update header & totals
+  const totalElements = document.querySelectorAll('.font-numeral-md, .text-numeral-md, .total-display');
+  totalElements.forEach(el => {
+    if (el.textContent.includes('$') && !el.textContent.includes('420')) {
+      el.textContent = `$${currentOrderData.total.toFixed(2)}`;
+    }
+  });
+
+  const subtotalEl = document.querySelector('[data-subtotal]');
+  if (subtotalEl) subtotalEl.textContent = `$${currentOrderData.subtotal.toFixed(2)}`;
+
+  const taxEl = document.querySelector('[data-tax]');
+  if (taxEl) taxEl.textContent = `$${currentOrderData.tax.toFixed(2)}`;
+}
+
+async function submitPayment(method, customAmount = null) {
+  if (!currentOrderData) return;
+  const amountToPay = customAmount || currentOrderData.balance_due;
+
+  try {
+    const payload = {
+      order_id: currentOrderId,
+      payment_method: method || currentPaymentMethod,
+      amount: amountToPay,
+      tip: currentTipAmount,
+      tendered_amount: method === 'CASH' ? amountToPay : null,
+      card_brand: 'Visa',
+      card_last4: '4242'
+    };
+
+    const res = await fetch('/api/checkout/pay', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      alert('Payment Error: ' + (err.detail || 'Failed to process payment'));
+      return;
+    }
+
+    const paymentResult = await res.json();
+    alert(`Payment of $${paymentResult.total_paid.toFixed(2)} (${paymentResult.payment_method}) Successful! Order settled and table released.`);
+    window.location.href = '/';
+  } catch (e) {
+    alert('Payment processing failed: ' + e.message);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadCheckoutData();
+
+  // Wire Cash, Card, and Digital Wallet buttons
+  document.querySelectorAll('button').forEach(btn => {
+    const text = btn.textContent.toLowerCase();
+    if (text.includes('card') || text.includes('credit')) {
+      btn.onclick = () => submitPayment('CREDIT_CARD');
+    } else if (text.includes('cash')) {
+      btn.onclick = () => submitPayment('CASH');
+    } else if (text.includes('apple') || text.includes('digital') || text.includes('wallet')) {
+      btn.onclick = () => submitPayment('DIGITAL_WALLET');
+    }
+  });
+});
+</script>
+
+</body></html>

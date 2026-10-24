@@ -11,7 +11,10 @@ def get_connection() -> sqlite3.Connection:
     conn = sqlite3.connect(settings.DATABASE_PATH, timeout=15)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON;")
-    conn.execute("PRAGMA journal_mode = WAL;")
+    if os.environ.get("VERCEL") or os.environ.get("AWS_LAMBDA_FUNCTION_NAME"):
+        conn.execute("PRAGMA journal_mode = DELETE;")
+    else:
+        conn.execute("PRAGMA journal_mode = WAL;")
     return conn
 
 def init_db():

@@ -1528,26 +1528,52 @@
       } catch (e) { console.error(e); }
     }
 
-    // --- REALTIME WEBSOCKET (BROADCAST SYNCHRONIZATION ACROSS ALL TABS) ---
+    // --- REALTIME WEBSOCKET WITH POLLING FALLBACK ---
+    let isWsConnected = false;
+    let pollingInterval = null;
+
     function initWebSocket() {
-      const proto = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-      const ws = new WebSocket(`${proto}//${window.location.host}/ws/pos`);
-      ws.onmessage = (event) => {
-        try {
-          const msg = JSON.parse(event.data);
-          console.log('Realtime event received:', msg.event);
-          // Always refresh all views so that Kitchen, Analytics, and Floor Plan stay in sync
-          fetchFloorPlan();
-          fetchKdsTickets();
-          fetchAnalytics();
-          fetchInventory();
-          updateHeaderStats();
-          if (currentCheckoutOrder) {
-            loadCheckoutForOrder(currentCheckoutOrder.order_id);
+      try {
+        const proto = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+        const ws = new WebSocket(`${proto}//${window.location.host}/ws/pos`);
+        ws.onopen = () => {
+          isWsConnected = true;
+          if (pollingInterval) { clearInterval(pollingInterval); pollingInterval = null; }
+          const statusText = document.getElementById('liveStatusText');
+          if (statusText) statusText.textContent = 'Live Sync Active';
+        };
+        ws.onmessage = (event) => {
+          try {
+            fetchFloorPlan();
+            fetchKdsTickets();
+            fetchAnalytics();
+            fetchInventory();
+            updateHeaderStats();
+            if (currentCheckoutOrder) {
+              loadCheckoutForOrder(currentCheckoutOrder.order_id);
+            }
+          } catch (e) {}
+        };
+        ws.onclose = () => {
+          isWsConnected = false;
+          const statusText = document.getElementById('liveStatusText');
+          if (statusText) statusText.textContent = 'Auto-Syncing (Cloud)';
+          if (!pollingInterval) {
+            pollingInterval = setInterval(() => {
+              if (currentTab === 'floorplan') fetchFloorPlan();
+              else if (currentTab === 'kds') fetchKdsTickets();
+              else if (currentTab === 'analytics') fetchAnalytics();
+              else if (currentTab === 'inventory') fetchInventory();
+              updateHeaderStats();
+            }, 6000);
           }
-        } catch (e) {}
-      };
-      ws.onclose = () => setTimeout(initWebSocket, 3000);
+          setTimeout(initWebSocket, 20000);
+        };
+      } catch (e) {
+        if (!pollingInterval) {
+          pollingInterval = setInterval(fetchFloorPlan, 6000);
+        }
+      }
     }
 
     async function updateHeaderStats() {

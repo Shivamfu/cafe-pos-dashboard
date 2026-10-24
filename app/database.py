@@ -213,6 +213,17 @@ def init_db():
         closed_at TEXT,
         status TEXT NOT NULL DEFAULT 'OPEN' CHECK(status IN ('OPEN', 'CLOSED'))
     );
+
+    -- Staff Operators
+    CREATE TABLE IF NOT EXISTS staff (
+        id TEXT PRIMARY KEY,
+        name TEXT NOT NULL,
+        role TEXT NOT NULL,
+        employee_code TEXT NOT NULL UNIQUE,
+        pin TEXT NOT NULL,
+        avatar_url TEXT NOT NULL,
+        is_active INTEGER NOT NULL DEFAULT 1
+    );
     """)
     conn.commit()
 
@@ -226,6 +237,14 @@ def init_db():
     except Exception:
         pass
     conn.commit()
+
+    # Seed staff if not already seeded
+    try:
+        check_staff = cursor.execute("SELECT COUNT(*) as count FROM staff;").fetchone()
+        if check_staff["count"] == 0:
+            seed_staff(conn)
+    except Exception:
+        pass
 
     check = cursor.execute("SELECT COUNT(*) as count FROM sections;").fetchone()
     if check["count"] == 0:
@@ -575,4 +594,18 @@ def seed_data(conn: sqlite3.Connection):
         VALUES ('draw-01', 'TERM-01', 'Sarah Jenkins', 15000.00, 16869.00, 1869.00, 0.0, 0.0, ?, 'OPEN');
     """, (now_utc.isoformat(),))
 
+    conn.commit()
+
+def seed_staff(conn: sqlite3.Connection):
+    cursor = conn.cursor()
+    staff_members = [
+        ("staff-01", "Sarah Jenkins", "Shift Lead & Head Barista", "EMP-101", "1010", "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80", 1),
+        ("staff-02", "Marcus Chen", "Head Chef & Kitchen Lead", "EMP-102", "2020", "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=300&q=80", 1),
+        ("staff-03", "Priya Sharma", "Floor Captain & Cashier", "EMP-103", "3030", "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80", 1),
+        ("staff-04", "Alex Rivera", "Senior Barista & Order Runner", "EMP-104", "4040", "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80", 1),
+    ]
+    cursor.executemany("""
+        INSERT OR IGNORE INTO staff (id, name, role, employee_code, pin, avatar_url, is_active)
+        VALUES (?, ?, ?, ?, ?, ?, ?);
+    """, staff_members)
     conn.commit()

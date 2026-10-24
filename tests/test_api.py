@@ -183,3 +183,17 @@ def test_analytics_summary():
     assert "total_orders" in data
     assert "tables" in data
     assert "top_items" in data
+
+def test_staff_list_and_switch():
+    res = client.get("/api/staff")
+    assert res.status_code == 200
+    staff = res.json()
+    assert len(staff) == 4
+    codes = [s["employee_code"] for s in staff]
+    assert "EMP-101" in codes
+    assert "EMP-102" in codes
+
+    # Test staff login/switch
+    login_res = client.post("/api/staff/login", json={"employee_code": "EMP-102"})
+    assert login_res.status_code == 200
+    assert login_res.json()["name"] == "Marcus Chen"

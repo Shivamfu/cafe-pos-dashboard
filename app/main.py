@@ -10,7 +10,7 @@ from contextlib import asynccontextmanager
 
 from app.config import settings
 from app.database import init_db
-from app.routers import tables, menu, orders, checkout, kds, inventory, shift, websocket, analytics
+from app.routers import tables, menu, orders, checkout, kds, inventory, shift, websocket, analytics, staff
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -43,6 +43,7 @@ app.include_router(kds.router)
 app.include_router(inventory.router)
 app.include_router(shift.router)
 app.include_router(analytics.router)
+app.include_router(staff.router)
 app.include_router(websocket.router)
 
 # Mount Static frontend files

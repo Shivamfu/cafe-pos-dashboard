@@ -100,18 +100,24 @@
         </div>
       </button>
 
-      <!-- Active Staff Card -->
-      <div class="flex items-center gap-3 pl-4 border-l border-white/15">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-600 to-amber-500 flex items-center justify-center font-bold text-sm text-white shadow-sm ring-2 ring-white/10">
-          SJ
-        </div>
-        <div class="hidden md:block text-left">
-          <div class="text-xs font-bold leading-none text-white">Sarah Jenkins</div>
-          <div class="text-[11px] text-amber-200/70 font-medium leading-tight mt-1 flex items-center gap-1">
-            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
-            Shift Lead Barista
+      <!-- Active Staff Operator Card & Switch User Button -->
+      <div class="flex items-center gap-2 pl-4 border-l border-white/15">
+        <button onclick="openSwitchUserModal()" class="flex items-center gap-3 p-1.5 pr-3 rounded-2xl bg-white/10 hover:bg-white/20 transition-all border border-white/15 group shadow-sm text-left active:scale-95" title="Click to switch operator">
+          <img id="headerStaffAvatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80" alt="Avatar" class="w-10 h-10 rounded-xl object-cover ring-2 ring-amber-400/50 group-hover:ring-amber-300 transition-all">
+          <div class="hidden md:block">
+            <div class="flex items-center gap-1.5">
+              <span id="headerStaffName" class="text-xs font-bold leading-none text-white">Sarah Jenkins</span>
+              <span class="material-symbols-outlined text-[14px] text-amber-300 group-hover:rotate-180 transition-transform">swap_horiz</span>
+            </div>
+            <div class="text-[11px] text-amber-200/80 font-medium leading-tight mt-1 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span id="headerStaffRole">Shift Lead Barista</span>
+            </div>
           </div>
-        </div>
+        </button>
+        <button onclick="lockTerminal()" title="Lock POS Terminal / Log Out" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-red-500/20 hover:text-red-300 text-amber-200 border border-white/15 flex items-center justify-center transition-all active:scale-90">
+          <span class="material-symbols-outlined text-[18px]">lock</span>
+        </button>
       </div>
     </div>
   </header>
@@ -293,7 +299,7 @@
               </div>
               <div class="text-right">
                 <span class="text-xs text-slate-400 font-semibold block uppercase tracking-wider mb-1">Server</span>
-                <span class="text-xs font-extrabold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-lg inline-block">Sarah J.</span>
+                <span id="cartServerBadge" class="text-xs font-extrabold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-lg inline-block">Sarah J.</span>
               </div>
             </div>
 
@@ -623,6 +629,79 @@
     </div>
   </div>
 
+  <!-- ================= OPERATOR LOGIN OVERLAY (FULL SCREEN) ================= -->
+  <div id="operatorLoginOverlay" class="fixed inset-0 z-50 bg-brand-950/95 backdrop-blur-2xl flex flex-col items-center justify-center p-6 overflow-y-auto">
+    <div class="max-w-4xl w-full text-center space-y-8 my-auto">
+      <!-- Brand & Title -->
+      <div class="space-y-3">
+        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center text-white shadow-2xl shadow-amber-500/30 ring-4 ring-white/10 mx-auto">
+          <span class="material-symbols-outlined text-[36px]">local_cafe</span>
+        </div>
+        <div>
+          <span class="text-xs font-mono font-bold tracking-widest text-amber-400 uppercase bg-amber-950/80 px-3.5 py-1 rounded-full border border-amber-500/30 inline-block">
+            TERMINAL #01 • OPERATOR SIGN-IN
+          </span>
+          <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight mt-2.5">
+            Velvet Roast Cafe POS
+          </h1>
+          <p class="text-sm text-amber-200/70 mt-1 max-w-md mx-auto font-medium">
+            Select your staff operator profile below to unlock the terminal
+          </p>
+        </div>
+      </div>
+
+      <!-- 4 Operator Cards Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 text-left" id="loginStaffGrid">
+        <!-- Generated dynamically via JS -->
+      </div>
+
+      <!-- Footer Info -->
+      <div class="text-xs text-amber-200/50 flex flex-wrap items-center justify-center gap-4 pt-4 border-t border-white/10">
+        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> POS Online</span>
+        <span>•</span>
+        <span>Instant Operator Switching</span>
+        <span>•</span>
+        <span>Audit Trail & Server Attribution</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SWITCH USER MODAL ================= -->
+  <div id="switchUserModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl border border-slate-200 max-w-2xl w-full p-7 shadow-2xl space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-50 text-brand-700 flex items-center justify-center">
+            <span class="material-symbols-outlined text-[24px]">switch_account</span>
+          </div>
+          <div>
+            <h3 class="font-extrabold text-xl text-brand-900 tracking-tight">Switch Operator</h3>
+            <p class="text-xs text-slate-400">Select another staff member to operate this terminal</p>
+          </div>
+        </div>
+        <button onclick="closeSwitchUserModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition-colors">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+
+      <!-- Staff Profiles Grid in Modal -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="switchStaffGrid">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Bottom Actions -->
+      <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+        <button onclick="lockTerminal()" class="px-4 py-2.5 rounded-xl bg-red-50 hover:bg-red-100 text-red-700 text-xs font-bold transition-all flex items-center gap-2">
+          <span class="material-symbols-outlined text-[16px]">lock</span>
+          <span>Lock Terminal & Sign Out</span>
+        </button>
+        <button onclick="closeSwitchUserModal()" class="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-all">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- ================= JAVASCRIPT LOGIC ================= -->
   <script>
     const MENU_IMAGES = {
@@ -648,6 +727,209 @@
     let currentPaymentMethod = 'CREDIT_CARD';
     let currentTipRate = 0.0;
     let currentCheckoutOrder = null;
+
+    // Staff Operators & Profiles
+    const STAFF_PROFILES = [
+      {
+        id: "staff-01",
+        name: "Sarah Jenkins",
+        short_name: "Sarah J.",
+        role: "Shift Lead & Head Barista",
+        employee_code: "EMP-101",
+        pin: "1010",
+        avatar_url: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80",
+        tag: "Shift Lead",
+        tag_color: "bg-amber-100 text-amber-900 border-amber-300"
+      },
+      {
+        id: "staff-02",
+        name: "Marcus Chen",
+        short_name: "Marcus C.",
+        role: "Head Chef & Kitchen Lead",
+        employee_code: "EMP-102",
+        pin: "2020",
+        avatar_url: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=300&q=80",
+        tag: "Head Chef",
+        tag_color: "bg-red-100 text-red-900 border-red-300"
+      },
+      {
+        id: "staff-03",
+        name: "Priya Sharma",
+        short_name: "Priya S.",
+        role: "Floor Captain & Cashier",
+        employee_code: "EMP-103",
+        pin: "3030",
+        avatar_url: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80",
+        tag: "Floor Lead",
+        tag_color: "bg-emerald-100 text-emerald-900 border-emerald-300"
+      },
+      {
+        id: "staff-04",
+        name: "Alex Rivera",
+        short_name: "Alex R.",
+        role: "Senior Barista & Order Runner",
+        employee_code: "EMP-104",
+        pin: "4040",
+        avatar_url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80",
+        tag: "Barista",
+        tag_color: "bg-blue-100 text-blue-900 border-blue-300"
+      }
+    ];
+
+    let currentStaff = null;
+
+    // --- OPERATOR AUTH & SWITCH USER ---
+    function initStaffSession() {
+      renderLoginStaffCards();
+      const saved = localStorage.getItem('cafe_pos_active_operator');
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          const found = STAFF_PROFILES.find(s => s.id === parsed.id || s.employee_code === parsed.employee_code);
+          if (found) {
+            applyActiveStaff(found, false);
+            hideLoginOverlay();
+            return;
+          }
+        } catch (e) {}
+      }
+      // Show login overlay if not signed in
+      showLoginOverlay();
+    }
+
+    function showLoginOverlay() {
+      const el = document.getElementById('operatorLoginOverlay');
+      if (el) el.classList.remove('hidden');
+    }
+
+    function hideLoginOverlay() {
+      const el = document.getElementById('operatorLoginOverlay');
+      if (el) el.classList.add('hidden');
+    }
+
+    function renderLoginStaffCards() {
+      const container = document.getElementById('loginStaffGrid');
+      if (!container) return;
+      container.innerHTML = STAFF_PROFILES.map(staff => `
+        <div class="bg-white/10 hover:bg-white/15 border border-white/15 hover:border-amber-400/60 rounded-3xl p-5 flex flex-col justify-between transition-all group shadow-2xl backdrop-blur-md">
+          <div class="space-y-4 text-center">
+            <div class="relative w-24 h-24 mx-auto">
+              <img src="${staff.avatar_url}" alt="${staff.name}" class="w-24 h-24 rounded-2xl object-cover ring-4 ring-white/15 group-hover:ring-amber-400 group-hover:scale-105 transition-all shadow-lg">
+              <span class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-emerald-500 border-2 border-brand-950 flex items-center justify-center">
+                <span class="w-2 h-2 rounded-full bg-white"></span>
+              </span>
+            </div>
+            <div>
+              <h3 class="font-bold text-white text-base tracking-tight leading-snug">${staff.name}</h3>
+              <p class="text-xs text-amber-200/80 font-medium mt-1">${staff.role}</p>
+              <div class="mt-2.5 flex items-center justify-center gap-1.5">
+                <span class="font-mono text-[11px] font-black text-amber-300 bg-amber-950/80 px-2 py-0.5 rounded-md border border-amber-500/20">
+                  ${staff.employee_code}
+                </span>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-md border ${staff.tag_color}">
+                  ${staff.tag}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-5 mt-4 border-t border-white/10">
+            <button onclick="loginStaffOperator('${staff.id}')" class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-brand-950 font-black text-xs flex items-center justify-center gap-1.5 shadow-lg shadow-amber-500/20 active:scale-[0.98] transition-all">
+              <span class="material-symbols-outlined text-[18px]">login</span>
+              <span>Sign In as ${staff.short_name}</span>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function loginStaffOperator(staffId) {
+      const staff = STAFF_PROFILES.find(s => s.id === staffId);
+      if (!staff) return;
+      applyActiveStaff(staff, true);
+      hideLoginOverlay();
+    }
+
+    function applyActiveStaff(staff, notifyBackend = true) {
+      currentStaff = staff;
+      localStorage.setItem('cafe_pos_active_operator', JSON.stringify(staff));
+      
+      const avatarEl = document.getElementById('headerStaffAvatar');
+      const nameEl = document.getElementById('headerStaffName');
+      const roleEl = document.getElementById('headerStaffRole');
+      const cartBadgeEl = document.getElementById('cartServerBadge');
+      
+      if (avatarEl) avatarEl.src = staff.avatar_url;
+      if (nameEl) nameEl.textContent = staff.name;
+      if (roleEl) roleEl.textContent = staff.role;
+      if (cartBadgeEl) cartBadgeEl.textContent = staff.short_name;
+
+      if (notifyBackend) {
+        fetch('/api/staff/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ employee_code: staff.employee_code })
+        }).catch(() => {});
+      }
+    }
+
+    function openSwitchUserModal() {
+      renderSwitchStaffGrid();
+      const modal = document.getElementById('switchUserModal');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeSwitchUserModal() {
+      const modal = document.getElementById('switchUserModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function renderSwitchStaffGrid() {
+      const container = document.getElementById('switchStaffGrid');
+      if (!container) return;
+      container.innerHTML = STAFF_PROFILES.map(staff => {
+        const isActive = currentStaff && currentStaff.id === staff.id;
+        return `
+          <div onclick="switchOperator('${staff.id}')" class="p-4 rounded-2xl border ${isActive ? 'border-amber-500 bg-amber-50/60 ring-2 ring-amber-500/20' : 'border-slate-200 hover:border-slate-300 hover:bg-slate-50/80'} cursor-pointer transition-all flex items-center justify-between group shadow-sm">
+            <div class="flex items-center gap-3">
+              <img src="${staff.avatar_url}" alt="${staff.name}" class="w-12 h-12 rounded-xl object-cover ring-2 ${isActive ? 'ring-amber-500' : 'ring-slate-200'}">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="font-extrabold text-slate-900 text-sm">${staff.name}</span>
+                  <span class="font-mono text-[10px] font-black text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md">${staff.employee_code}</span>
+                </div>
+                <span class="text-xs text-slate-500 block font-medium mt-0.5">${staff.role}</span>
+              </div>
+            </div>
+            <div>
+              ${isActive ? `
+                <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-emerald-100 text-emerald-800 flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Active
+                </span>
+              ` : `
+                <button class="px-3.5 py-1.5 rounded-xl bg-slate-100 group-hover:bg-amber-500 group-hover:text-white text-slate-700 text-xs font-bold transition-all">
+                  Switch
+                </button>
+              `}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function switchOperator(staffId) {
+      const staff = STAFF_PROFILES.find(s => s.id === staffId);
+      if (!staff) return;
+      applyActiveStaff(staff, true);
+      closeSwitchUserModal();
+    }
+
+    function lockTerminal() {
+      closeSwitchUserModal();
+      localStorage.removeItem('cafe_pos_active_operator');
+      currentStaff = null;
+      showLoginOverlay();
+    }
 
     // --- TAB SWITCHING (ALWAYS FRESH DATA) ---
     function switchTab(tabId) {
@@ -1054,7 +1336,7 @@
         table_id: activeCart.table_id,
         order_type: activeCart.table_id ? 'DINE_IN' : 'TAKEAWAY',
         guest_count: 2,
-        server_name: 'Sarah Jenkins',
+        server_name: currentStaff ? currentStaff.name : 'Sarah Jenkins',
         special_instructions: orderSpecialInstructions,
         items: activeCart.items.map(i => ({
           item_id: i.item_id,
@@ -1588,6 +1870,7 @@
 
     // --- INITIAL BOOTSTRAP ---
     document.addEventListener('DOMContentLoaded', () => {
+      initStaffSession();
       fetchFloorPlan();
       loadRegisterData();
       fetchKdsTickets();

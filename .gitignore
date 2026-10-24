@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.db-journal
+*.db-wal
+*.db-shm
+.pytest_cache/
+.env
+venv/
+.vscode/
+.idea/

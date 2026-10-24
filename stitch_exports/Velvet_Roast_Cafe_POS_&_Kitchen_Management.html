@@ -1,0 +1,603 @@
+<!DOCTYPE html><html lang="en" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"primary-fixed":"#ffdbcb","on-error":"#ffffff","on-surface-variant":"#50443f","on-secondary-fixed":"#111c2d","outline-variant":"#d4c3bc","tertiary-container":"#003c28","surface-bright":"#f8f9ff","primary-fixed-dim":"#ecbca7","tertiary-fixed":"#85f8c4","surface-container-lowest":"#ffffff","surface-dim":"#cbdbf5","secondary-container":"#d5e0f8","surface-container":"#e5eeff","on-primary":"#ffffff","on-secondary-container":"#586377","on-surface":"#0b1c30","on-secondary-fixed-variant":"#3c475a","primary":"#31170a","tertiary-fixed-dim":"#68dba9","inverse-primary":"#ecbca7","on-primary-fixed-variant":"#603f2f","on-error-container":"#93000a","error-container":"#ffdad6","on-primary-container":"#be927e","outline":"#82746e","surface-container-low":"#eff4ff","surface-tint":"#7a5645","secondary":"#545f73","on-tertiary":"#ffffff","inverse-on-surface":"#eaf1ff","on-background":"#0b1c30","on-tertiary-fixed-variant":"#005137","error":"#ba1a1a","surface-container-high":"#dce9ff","primary-container":"#4a2c1d","on-secondary":"#ffffff","on-tertiary-container":"#36af80","secondary-fixed":"#d8e3fb","surface-container-highest":"#d3e4fe","background":"#f8f9ff","inverse-surface":"#213145","secondary-fixed-dim":"#bcc7de","on-primary-fixed":"#2e1508","surface":"#f8f9ff","surface-variant":"#d3e4fe","on-tertiary-fixed":"#002114","tertiary":"#002416"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter-tablet":"0.75rem","space-xs":"0.25rem","space-lg":"1.5rem","space-xl":"2rem","space-sm":"0.5rem","margin":"1rem","margin-desktop":"1.5rem","gutter":"1rem","margin-tablet":"1.25rem","gutter-desktop":"1.25rem","space-md":"1rem"},"fontFamily":{"display-lg-mobile":["Plus Jakarta Sans"],"numeral-lg":["Space Grotesk"],"numeral-md":["Space Grotesk"],"display-lg":["Plus Jakarta Sans"],"label-md":["Space Grotesk"],"headline-sm":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"label-sm":["Space Grotesk"],"headline-lg":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"label-lg":["Space Grotesk"],"body-sm":["Plus Jakarta Sans"]},"fontSize":{"display-lg-mobile":["30px",{"lineHeight":"38px","letterSpacing":"-0.02em","fontWeight":"700"}],"numeral-lg":["32px",{"lineHeight":"36px","letterSpacing":"-0.01em","fontWeight":"700"}],"numeral-md":["20px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"700"}],"display-lg":["40px",{"lineHeight":"48px","letterSpacing":"-0.02em","fontWeight":"700"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.03em","fontWeight":"600"}],"headline-sm":["18px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"500"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.02em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}]}}}}</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between"><div class="flex flex-col"><div class="h-28 px-space-md flex items-center gap-space-sm bg-surface-container-lowest"><img alt="Artisan Cafe POS Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQn87G-dopE59uw0bmDWqPH7Ad2s9LGWBh_-CvU_syem9z4aHRqusKBx1kU94MOFBOg9tAT9FXyhZB456bHBiveXMrcZSNIpH0EeUd6otEor1wggRhlb4L8toHckC_EacLyei7dT8MRVb8FgSgHf1KKtwN1BA8jplUTQp0uOFaCawoqblYDk0NuMR5Z-g9PG4SSPRRmaTTNY0cN4kUNK84vdpZbtFKo5-YFliCKPEoTvTjJHIWfPLv"><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary tracking-tight leading-none">CoffeeCo</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-1">Terminal #01 · POS</span></div></div><div class="px-space-md py-space-xs"><div class="font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-space-xs px-space-sm">Operations</div><nav class="flex flex-col gap-1" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-2.5 transition-all bg-primary-container text-on-primary font-bold rounded-lg" data-path="floor-plan" href="#"><span class="material-symbols-outlined text-[20px]">table_restaurant</span><span class="font-label-lg text-label-lg">Floor Plan</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="order-register" href="#"><span class="material-symbols-outlined text-[20px]">point_of_sale</span><span class="font-label-lg text-label-lg">Order Register</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="active-kitchen" href="#"><span class="material-symbols-outlined text-[20px]">skillet</span><span class="font-label-lg text-label-lg">Kitchen Display</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="order-history" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span class="font-label-lg text-label-lg">Transactions</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="inventory-catalog" href="#"><span class="material-symbols-outlined text-[20px]">inventory_2</span><span class="font-label-lg text-label-lg">Inventory Stock</span></a></nav></div><div class="px-space-md py-space-xs mt-space-sm"><div class="font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-space-xs px-space-sm">Management</div><nav class="flex flex-col gap-1" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="daily-reports" href="#"><span class="material-symbols-outlined text-[20px]">monitoring</span><span class="font-label-lg text-label-lg">Daily Analytics</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="shift-management" href="#"><span class="material-symbols-outlined text-[20px]">badge</span><span class="font-label-lg text-label-lg">Staff &amp; Shifts</span></a></nav></div></div><div class="p-space-md bg-surface-container-low"><div class="flex items-center justify-between mb-space-xs"><span class="font-label-sm text-label-sm text-secondary uppercase">Drawer Balance</span><span class="font-numeral-md text-numeral-md text-primary">$420.00</span></div><button class="w-full flex items-center justify-center gap-space-xs py-2 bg-surface-container-highest text-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[18px]">lock_clock</span>End Shift &amp; Close</button></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 z-40 bg-surface-container-lowest/95 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-gutter-desktop flex items-center justify-between"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-secondary text-[20px]">schedule</span><span class="font-numeral-md text-numeral-md text-on-surface">10:42 AM</span><span class="font-body-sm text-body-sm text-secondary">· Friday, Oct 24</span></div><div class="h-4 w-px bg-surface-container-highest"></div><div class="inline-flex items-center gap-space-xs px-2.5 py-1 rounded-full bg-[#ECFDF5] text-[#065F46] cursor-pointer hover:bg-[#D1FAE5] transition-colors"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-[#059669]"></span></span><span class="font-label-sm text-label-sm">Network Status: Online</span></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm bg-surface-container-low px-3 py-1.5 rounded-lg"><div class="flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface leading-tight">Sarah Jenkins</span><span class="font-label-sm text-label-sm text-secondary leading-none">Senior Barista</span></div></div><div class="flex items-center gap-1"><button class="w-9 h-9 flex items-center justify-center rounded-lg text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Quick Settings" type="button"><span class="material-symbols-outlined text-[20px]">settings</span></button><button class="w-9 h-9 flex items-center justify-center rounded-lg text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Lock Terminal" type="button"><span class="material-symbols-outlined text-[20px]">lock</span></button></div></div></div><div class="h-12 px-gutter-desktop bg-surface-container-low flex items-center justify-between"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs"><span class="font-label-sm text-label-sm text-secondary uppercase">Floor Cap:</span><span class="font-numeral-md text-numeral-md text-primary">78%</span><span class="font-body-sm text-body-sm text-secondary">(31/40)</span></div><div class="h-3 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-xs"><span class="font-label-sm text-label-sm text-secondary uppercase">Active Orders:</span><span class="font-numeral-md text-numeral-md text-primary">14</span></div><div class="h-3 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-xs"><span class="font-label-sm text-label-sm text-secondary uppercase">Revenue Today:</span><span class="font-numeral-md text-numeral-md text-primary">$2,845.50</span></div></div><div class="flex items-center gap-1 bg-surface-container-highest/60 p-1 rounded-lg"><button class="px-3 py-1 rounded bg-surface-container-lowest shadow-[0_1px_4px_rgba(0,0,0,0.04)] font-label-sm text-label-sm text-primary" type="button">Main Floor</button><button class="px-3 py-1 rounded font-label-sm text-label-sm text-secondary hover:text-on-surface hover:bg-surface-container-lowest/50 transition-colors" type="button">Patio Garden</button><button class="px-3 py-1 rounded font-label-sm text-label-sm text-secondary hover:text-on-surface hover:bg-surface-container-lowest/50 transition-colors" type="button">Mezzanine</button><button class="px-3 py-1 rounded font-label-sm text-label-sm text-secondary hover:text-on-surface hover:bg-surface-container-lowest/50 transition-colors" type="button">Takeaway Bar</button></div></div></header><main class="relative pt-28 w-full bg-background min-h-screen"><div class="flex flex-col w-full">
+<div class="px-gutter-desktop py-space-md flex flex-col gap-space-lg">
+<!-- Top Action & Filter Toolbar -->
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-md bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex flex-wrap items-center gap-space-md">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface tracking-tight">Main Floor Tables</h1>
+<p class="font-body-sm text-body-sm text-secondary">Real-time floor occupancy &amp; quick table servicing</p>
+</div>
+<div class="h-8 w-px bg-surface-container-highest hidden sm:block"></div>
+<!-- Filter Status Pills -->
+<div class="inline-flex items-center gap-1.5 bg-surface-container-low p-1 rounded-xl">
+<button class="table-filter-btn active-filter px-3 py-1.5 rounded-lg bg-surface-container-lowest shadow-sm font-label-md text-label-md text-on-surface transition-all flex items-center gap-1.5" type="button">
+<span class="">All</span>
+<span class="bg-surface-container-high text-secondary px-1.5 py-0.5 rounded-full text-label-sm font-label-sm">12</span>
+</button>
+<button class="table-filter-btn px-3 py-1.5 rounded-lg hover:bg-surface-container-lowest/70 font-label-md text-label-md text-secondary hover:text-on-surface transition-all flex items-center gap-1.5" type="button">
+<span class="w-2 h-2 rounded-full bg-[#10b981]"></span>
+<span class="">Available</span>
+<span class="bg-[#ecfdf5] text-[#065f46] px-1.5 py-0.5 rounded-full text-label-sm font-label-sm">4</span>
+</button>
+<button class="table-filter-btn px-3 py-1.5 rounded-lg hover:bg-surface-container-lowest/70 font-label-md text-label-md text-secondary hover:text-on-surface transition-all flex items-center gap-1.5" type="button">
+<span class="w-2 h-2 rounded-full bg-[#ef4444]"></span>
+<span class="">Occupied</span>
+<span class="bg-[#fef2f2] text-[#991b1b] px-1.5 py-0.5 rounded-full text-label-sm font-label-sm">5</span>
+</button>
+<button class="table-filter-btn px-3 py-1.5 rounded-lg hover:bg-surface-container-lowest/70 font-label-md text-label-md text-secondary hover:text-on-surface transition-all flex items-center gap-1.5" type="button">
+<span class="w-2 h-2 rounded-full bg-[#f59e0b]"></span>
+<span class="">Bill Pending</span>
+<span class="bg-[#fffbeb] text-[#92400e] px-1.5 py-0.5 rounded-full text-label-sm font-label-sm">3</span>
+</button>
+</div>
+</div>
+<!-- Right Utility Controls -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- Quick Search -->
+<div class="relative min-w-[220px]">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-[20px]">search</span>
+<input class="w-full h-11 pl-10 pr-3 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface placeholder:text-secondary focus:outline-none focus:bg-surface-container-lowest transition-all" placeholder="Search table or guest..." type="text">
+</div>
+<!-- Section Dropdown -->
+<div class="relative">
+<select class="h-11 px-3.5 pr-8 bg-surface-container-low rounded-lg font-label-md text-label-md text-on-surface appearance-none focus:outline-none focus:bg-surface-container-lowest cursor-pointer transition-all">
+<option>All Sections</option>
+<option>Window Booths</option>
+<option>Center Floor</option>
+<option>Espresso Bar Counter</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-secondary pointer-events-none text-[18px]">expand_more</span>
+</div>
+<!-- Primary Quick Action -->
+<button class="h-11 px-4 bg-primary-container text-on-primary rounded-lg font-label-lg text-label-lg flex items-center gap-2 hover:opacity-95 active:scale-98 transition-all shadow-sm" type="button">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span class="">New Walk-in / Order</span>
+</button>
+</div>
+</div>
+<!-- Active Table Grid & Floating Detail Panel Layout -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+<!-- Tables Visual Matrix (8 Cols on XL) -->
+<div class="xl:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-space-md">
+<!-- Table 01: Occupied -->
+<div class="table-card relative p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between min-h-[178px] group" onclick="selectTable('Table 01', 'Occupied', '2 Guests', '18m', '$24.75', '2 items')">
+<div class="flex items-start justify-between gap-2">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Table 01</span>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">person</span>
+                  2 Seats
+                </span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">Window Booth · Bay 1</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#fef2f2] text-[#991b1b] font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#ef4444] animate-pulse"></span>
+              Occupied
+            </span>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-end justify-between bg-surface-container-low/60 p-2.5 rounded-lg">
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider block">Active Bill</span>
+<span class="font-numeral-md text-numeral-md text-on-surface">$24.75</span>
+</div>
+<div class="text-right flex flex-col items-end">
+<span class="inline-flex items-center gap-1 text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 18m
+              </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">2 items</span>
+</div>
+</div>
+</div>
+<!-- Table 02: Available -->
+<div class="table-card relative p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between min-h-[178px] group" onclick="selectTable('Table 02', 'Available', '2 Seats', '--', '$0.00', 'None')">
+<div class="flex items-start justify-between gap-2">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Table 02</span>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">person</span>
+                  2 Seats
+                </span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">Window Booth · Bay 2</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#ecfdf5] text-[#065f46] font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span>
+              Available
+            </span>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-end justify-between bg-[#f0fdf4] p-2.5 rounded-lg">
+<div>
+<span class="font-label-sm text-label-sm text-[#166534] uppercase tracking-wider block">Ready for Guests</span>
+<span class="font-numeral-md text-numeral-md text-[#15803d]">$0.00</span>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-[#dcfce7] text-[#166534] font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">cleaning_services</span> Cleaned
+              </span>
+</div>
+</div>
+</div>
+<!-- Table 03: Occupied (Selected / Active Highlight) -->
+<div class="table-card relative p-space-md rounded-xl bg-surface-container-lowest shadow-primary-container/10 transition-all cursor-pointer flex flex-col justify-between min-h-[178px] group bg-gradient-to-b from-surface-container-lowest to-surface-container-low/40 shadow-sm" onclick="selectTable('Table 03', 'Occupied', '4 Guests', '42m', '$41.50', '3 items')">
+<div class="absolute -top-2.5 -right-2.5 bg-primary-container text-on-primary text-label-sm font-label-sm px-2 py-0.5 rounded-full shadow-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">check_circle</span> Selected
+          </div>
+<div class="flex items-start justify-between gap-2">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-primary font-bold">Table 03</span>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">group</span>
+                  4 Seats
+                </span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">Center Floor · Banquette</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#fef2f2] text-[#991b1b] font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#ef4444] animate-ping"></span>
+              Occupied
+            </span>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-end justify-between bg-surface-container p-2.5 rounded-lg">
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider block">Current Total</span>
+<span class="font-numeral-md text-numeral-md text-primary">$41.50</span>
+</div>
+<div class="text-right flex flex-col items-end">
+<span class="inline-flex items-center gap-1 text-[#b91c1c] font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 42m
+              </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">3 courses</span>
+</div>
+</div>
+</div>
+<!-- Table 04: Bill Pending -->
+<div class="table-card relative p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between min-h-[178px] group" onclick="selectTable('Table 04', 'Bill Pending', '4 Guests', '52m', '$85.20', '5 items')">
+<div class="flex items-start justify-between gap-2">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Table 04</span>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">group</span>
+                  4 Seats
+                </span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">Center Floor · Round 4A</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#fffbeb] text-[#92400e] font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#f59e0b] animate-pulse"></span>
+              Bill Pending
+            </span>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-end justify-between bg-[#fefce8] p-2.5 rounded-lg">
+<div>
+<span class="font-label-sm text-label-sm text-[#854d0e] uppercase tracking-wider block">Awaiting Card</span>
+<span class="font-numeral-md text-numeral-md text-[#a16207]">$85.20</span>
+</div>
+<div class="text-right flex flex-col items-end">
+<span class="inline-flex items-center gap-1 text-[#854d0e] font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">receipt_long</span> Printed
+              </span>
+<span class="font-body-sm text-body-sm text-secondary">52m</span>
+</div>
+</div>
+</div>
+<!-- Table 05: Available -->
+<div class="table-card relative p-space-md rounded-xl bg-surface-container-lowest hover:shadow-md transition-all cursor-pointer flex flex-col justify-between min-h-[178px] group shadow-lg bg-surface-container-low/40" onclick="selectTable('Table 05', 'Available', '4 Seats', '--', '$0.00', 'None')">
+<div class="flex items-start justify-between gap-2">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Table 05</span>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">group</span>
+                  4 Seats
+                </span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">Center Floor · Round 4B</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#ecfdf5] text-[#065f46] font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span>
+              Available
+            </span>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-end justify-between bg-[#f0fdf4] p-2.5 rounded-lg">
+<div>
+<span class="font-label-sm text-label-sm text-[#166534] uppercase tracking-wider block">Ready for Guests</span>
+<span class="font-numeral-md text-numeral-md text-[#15803d]">$0.00</span>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-[#dcfce7] text-[#166534] font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">done_all</span> Setup
+              </span>
+</div>
+</div>
+</div>
+<!-- Table 06: Occupied -->
+<div class="table-card relative p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between min-h-[178px] group" onclick="selectTable('Table 06', 'Occupied', '6 Guests', '1h 12m', '$68.00', '4 items')">
+<div class="flex items-start justify-between gap-2">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Table 06</span>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">groups</span>
+                  6 Seats
+                </span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">Patio Edge · Garden Deck</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#fef2f2] text-[#991b1b] font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#ef4444] animate-pulse"></span>
+              Occupied
+            </span>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-end justify-between bg-surface-container-low/60 p-2.5 rounded-lg">
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider block">Active Bill</span>
+<span class="font-numeral-md text-numeral-md text-on-surface">$68.00</span>
+</div>
+<div class="text-right flex flex-col items-end">
+<span class="inline-flex items-center gap-1 text-[#b91c1c] font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">timer</span> 1h 12m
+              </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">4 items</span>
+</div>
+</div>
+</div>
+<!-- Table 07: Bill Pending -->
+<div class="table-card relative p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between min-h-[178px] group" onclick="selectTable('Table 07', 'Bill Pending', '2 Guests', '34m', '$34.00', '2 items')">
+<div class="flex items-start justify-between gap-2">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Table 07</span>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">person</span>
+                  2 Seats
+                </span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">Espresso Bar High-Top</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#fffbeb] text-[#92400e] font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#f59e0b] animate-pulse"></span>
+              Bill Pending
+            </span>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-end justify-between bg-[#fefce8] p-2.5 rounded-lg">
+<div>
+<span class="font-label-sm text-label-sm text-[#854d0e] uppercase tracking-wider block">Split Check</span>
+<span class="font-numeral-md text-numeral-md text-[#a16207]">$34.00</span>
+</div>
+<div class="text-right flex flex-col items-end">
+<span class="inline-flex items-center gap-1 text-[#854d0e] font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 34m
+              </span>
+<span class="font-body-sm text-body-sm text-secondary">Pending TAP</span>
+</div>
+</div>
+</div>
+<!-- Table 08: Available -->
+<div class="table-card relative p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between min-h-[178px] group" onclick="selectTable('Table 08', 'Available', '2 Seats', '--', '$0.00', 'None')">
+<div class="flex items-start justify-between gap-2">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Table 08</span>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">person</span>
+                  2 Seats
+                </span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">Espresso Bar High-Top</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#ecfdf5] text-[#065f46] font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span>
+              Available
+            </span>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-end justify-between bg-[#f0fdf4] p-2.5 rounded-lg">
+<div>
+<span class="font-label-sm text-label-sm text-[#166534] uppercase tracking-wider block">Ready for Guests</span>
+<span class="font-numeral-md text-numeral-md text-[#15803d]">$0.00</span>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-[#dcfce7] text-[#166534] font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">bolt</span> Quick Turn
+              </span>
+</div>
+</div>
+</div>
+<!-- Table 09: Occupied -->
+<div class="table-card relative p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between min-h-[178px] group" onclick="selectTable('Table 09', 'Occupied', '8 Guests', '58m', '$142.00', '8 items')">
+<div class="flex items-start justify-between gap-2">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Table 09</span>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">diversity_3</span>
+                  8 Seats (Communal)
+                </span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">Center Floor · Long Table</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#fef2f2] text-[#991b1b] font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#ef4444] animate-pulse"></span>
+              Occupied
+            </span>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-end justify-between bg-surface-container-low/60 p-2.5 rounded-lg">
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider block">Active Bill</span>
+<span class="font-numeral-md text-numeral-md text-on-surface">$142.00</span>
+</div>
+<div class="text-right flex flex-col items-end">
+<span class="inline-flex items-center gap-1 text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 58m
+              </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">8 items</span>
+</div>
+</div>
+</div>
+<!-- Table 10: Bill Pending -->
+<div class="table-card relative p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between min-h-[178px] group" onclick="selectTable('Table 10', 'Bill Pending', '6 Guests', '1h 05m', '$112.50', '6 items')">
+<div class="flex items-start justify-between gap-2">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Table 10</span>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">groups</span>
+                  6 Seats
+                </span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">Mezzanine Corner Alcove</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#fffbeb] text-[#92400e] font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#f59e0b] animate-pulse"></span>
+              Bill Pending
+            </span>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-end justify-between bg-[#fefce8] p-2.5 rounded-lg">
+<div>
+<span class="font-label-sm text-label-sm text-[#854d0e] uppercase tracking-wider block">Bill Printed</span>
+<span class="font-numeral-md text-numeral-md text-[#a16207]">$112.50</span>
+</div>
+<div class="text-right flex flex-col items-end">
+<span class="inline-flex items-center gap-1 text-[#854d0e] font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 1h 05m
+              </span>
+<span class="font-body-sm text-body-sm text-secondary">Receipt #2041</span>
+</div>
+</div>
+</div>
+<!-- Table 11: Available -->
+<div class="table-card relative p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between min-h-[178px] group" onclick="selectTable('Table 11', 'Available', '2 Seats', '--', '$0.00', 'None')">
+<div class="flex items-start justify-between gap-2">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Table 11</span>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">person</span>
+                  2 Seats
+                </span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">Patio Garden Bench</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#ecfdf5] text-[#065f46] font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span>
+              Available
+            </span>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-end justify-between bg-[#f0fdf4] p-2.5 rounded-lg">
+<div>
+<span class="font-label-sm text-label-sm text-[#166534] uppercase tracking-wider block">Ready for Guests</span>
+<span class="font-numeral-md text-numeral-md text-[#15803d]">$0.00</span>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-[#dcfce7] text-[#166534] font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">deck</span> Outdoor
+              </span>
+</div>
+</div>
+</div>
+<!-- Table 12: Occupied -->
+<div class="table-card relative p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between min-h-[178px] group" onclick="selectTable('Table 12', 'Occupied', '4 Guests', '22m', '$36.25', '3 items')">
+<div class="flex items-start justify-between gap-2">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Table 12</span>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">group</span>
+                  4 Seats
+                </span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">Patio Edge Deck 12</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#fef2f2] text-[#991b1b] font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#ef4444] animate-pulse"></span>
+              Occupied
+            </span>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-end justify-between bg-surface-container-low/60 p-2.5 rounded-lg">
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider block">Active Bill</span>
+<span class="font-numeral-md text-numeral-md text-on-surface">$36.25</span>
+</div>
+<div class="text-right flex flex-col items-end">
+<span class="inline-flex items-center gap-1 text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 22m
+              </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">3 items</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Action Floating Dock / Detail Panel (4 Cols on XL) -->
+<div class="xl:col-span-4 sticky top-32 flex flex-col gap-space-md" id="quickActionDrawer">
+<!-- Live Selected Table Detail Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-lg flex flex-col gap-space-md">
+<!-- Card Header & Metadata -->
+<div class="flex items-start justify-between pb-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-primary font-bold" id="detailTableNumber">Table 05</span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#ecfdf5] text-[#065f46] font-label-sm text-label-sm font-semibold" id="detailTableBadge" style="animation-delay: 106ms;"><span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span> Available</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-body-sm text-body-sm text-secondary" id="detailGuestCount">4 Seats</span>
+<span class="text-secondary">·</span>
+<span class="font-body-sm text-body-sm text-[#b91c1c] font-semibold flex items-center gap-0.5" id="detailElapsed"><span class="material-symbols-outlined text-[14px]">schedule</span> -- elapsed</span>
+<span class="text-secondary">·</span>
+<span class="font-body-sm text-body-sm text-secondary">Sarah J.</span>
+</div>
+</div>
+<!-- Transfer Button -->
+<button class="w-9 h-9 rounded-lg bg-surface-container-highest text-secondary hover:text-on-surface flex items-center justify-center transition-colors" title="Transfer Table" type="button">
+<span class="material-symbols-outlined text-[18px]">swap_horiz</span>
+</button>
+</div>
+<!-- Active Ticket Breakdown -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between pb-1">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Current Ticket (#1084)</span>
+<span class="font-label-sm text-label-sm text-tertiary-container font-semibold">Kitchen: Fire All</span>
+</div>
+<div class="flex flex-col gap-2 max-h-56 overflow-y-auto pr-1">
+<!-- Item 1 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-2 min-w-0">
+<span class="w-6 h-6 rounded bg-surface-container-highest text-on-surface font-numeral-md text-numeral-md text-[14px] flex items-center justify-center shrink-0">2</span>
+<div class="truncate">
+<span class="font-label-lg text-label-lg text-on-surface block truncate">Flat White</span>
+<span class="font-label-sm text-label-sm text-secondary">Oat Milk · Extra Shot (+0.75)</span>
+</div>
+</div>
+<span class="font-numeral-md text-numeral-md text-on-surface shrink-0">$9.00</span>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-2 min-w-0">
+<span class="w-6 h-6 rounded bg-surface-container-highest text-on-surface font-numeral-md text-numeral-md text-[14px] flex items-center justify-center shrink-0">1</span>
+<div class="truncate">
+<span class="font-label-lg text-label-lg text-on-surface block truncate">Avocado Sourdough Toast</span>
+<span class="font-label-sm text-label-sm text-secondary">Poached Egg · Chili Flakes</span>
+</div>
+</div>
+<span class="font-numeral-md text-numeral-md text-on-surface shrink-0">$14.50</span>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-2 min-w-0">
+<span class="w-6 h-6 rounded bg-surface-container-highest text-on-surface font-numeral-md text-numeral-md text-[14px] flex items-center justify-center shrink-0">1</span>
+<div class="truncate">
+<span class="font-label-lg text-label-lg text-on-surface block truncate">Truffle Brioche Benny</span>
+<span class="font-label-sm text-label-sm text-secondary">Smoked Bacon · Hollandaise</span>
+</div>
+</div>
+<span class="font-numeral-md text-numeral-md text-on-surface shrink-0">$18.00</span>
+</div>
+</div>
+</div>
+<!-- Total Due Row -->
+<div class="p-space-sm rounded-lg bg-surface-container flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider block">Subtotal Due (Incl. Tax)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Service: Standard 18% Ready</span>
+</div>
+<div class="text-right">
+<span class="font-numeral-lg text-numeral-lg text-primary" id="detailTotalAmount">$0.00</span>
+</div>
+</div>
+<!-- Ergonomic CTA Action Stack -->
+<div class="flex flex-col gap-2 pt-space-xs">
+<button class="w-full h-12 bg-primary-container text-on-primary rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-2 hover:opacity-95 active:scale-98 transition-all shadow-sm" type="button">
+<span class="material-symbols-outlined text-[20px]">add_shopping_cart</span>
+<span class="">Add Items / Quick Reorder</span>
+</button>
+<div class="grid grid-cols-2 gap-2">
+<button class="h-11 bg-surface-container-high text-on-surface hover:bg-surface-container-highest rounded-lg font-label-md text-label-md flex items-center justify-center gap-1.5 transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">receipt</span>
+<span class="">View Full Order</span>
+</button>
+<button class="h-11 bg-[#ecfdf5] text-[#065f46] hover:bg-[#d1fae5] rounded-lg font-label-md text-label-md flex items-center justify-center gap-1.5 font-semibold transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">payments</span>
+<span class="">Print Bill &amp; Pay</span>
+</button>
+</div>
+<button class="w-full py-2 bg-transparent text-secondary hover:text-error hover:bg-[#fef2f2] rounded-lg font-label-sm text-label-sm flex items-center justify-center gap-1 transition-all mt-1" type="button">
+<span class="material-symbols-outlined text-[16px]">cancel</span>
+<span class="">Void Active Items / Change Guest Table</span>
+</button>
+</div>
+</div>
+<!-- Mini Quick Status Insight Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">auto_graph</span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-on-surface block">Turnover Target: 38 min</span>
+<span class="font-body-sm text-body-sm text-secondary">Avg dining velocity on target today</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-[#065f46] bg-[#ecfdf5] px-2 py-1 rounded-full font-bold">+12% faster</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function selectTable(tableNum, status, guests, elapsed, total, items) {
+    const detailTableNumber = document.getElementById('detailTableNumber');
+    const detailTableBadge = document.getElementById('detailTableBadge');
+    const detailGuestCount = document.getElementById('detailGuestCount');
+    const detailElapsed = document.getElementById('detailElapsed');
+    const detailTotalAmount = document.getElementById('detailTotalAmount');
+
+    if (detailTableNumber) detailTableNumber.textContent = tableNum;
+    if (detailGuestCount) detailGuestCount.textContent = guests;
+    if (detailElapsed) detailElapsed.innerHTML = '<span class="material-symbols-outlined text-[14px]">schedule</span> ' + elapsed + ' elapsed';
+    if (detailTotalAmount) detailTotalAmount.textContent = total;
+
+    if (detailTableBadge) {
+      if (status === 'Available') {
+        detailTableBadge.className = 'inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#ecfdf5] text-[#065f46] font-label-sm text-label-sm font-semibold';
+        detailTableBadge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span> Available';
+      } else if (status === 'Bill Pending') {
+        detailTableBadge.className = 'inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#fffbeb] text-[#92400e] font-label-sm text-label-sm font-semibold';
+        detailTableBadge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-[#f59e0b]"></span> Bill Pending';
+      } else {
+        detailTableBadge.className = 'inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#fef2f2] text-[#991b1b] font-label-sm text-label-sm font-semibold';
+        detailTableBadge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-[#ef4444]"></span> Occupied';
+      }
+    }
+
+    // Interactive card highlight state
+    const cards = document.querySelectorAll('.table-card');
+    cards.forEach(c => {
+      c.classList.remove('shadow-lg', 'bg-surface-container-low/40');
+      c.classList.add('shadow-sm');
+    });
+
+    if (event && event.currentTarget) {
+      event.currentTarget.classList.remove('shadow-sm');
+      event.currentTarget.classList.add('shadow-lg', 'bg-surface-container-low/40');
+    }
+  }
+
+  // Filter switching
+  const filterBtns = document.querySelectorAll('.table-filter-btn');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => {
+        b.classList.remove('bg-surface-container-lowest', 'shadow-sm', 'text-on-surface');
+        b.classList.add('text-secondary');
+      });
+      btn.classList.add('bg-surface-container-lowest', 'shadow-sm', 'text-on-surface');
+      btn.classList.remove('text-secondary');
+    });
+  });
+</script></main></div>
+
+</body></html>

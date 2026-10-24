@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Velvet Roast Cafe POS • All-In-One Operations</title>
+  
+  <!-- Premium Fonts & Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fdfbf7',
+              100: '#fbf4ea',
+              200: '#f5e4cb',
+              500: '#c87a1d',
+              600: '#a86113',
+              700: '#7d4409',
+              900: '#2b1608',
+            },
+            surface: {
+              canvas: '#f8fafc',
+              card: '#ffffff',
+              border: '#e2e8f0',
+              muted: '#64748b'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"Space Grotesk"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .badge-available { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+    .badge-occupied { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+    .badge-pending { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
+    .badge-reserved { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f8fafc; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+  </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
+
+  <!-- ================= TOP HEADER ================= -->
+  <header class="bg-brand-900 text-white px-8 py-5 shadow-lg flex items-center justify-between shrink-0 border-b border-brand-700/40">
+    <div class="flex items-center gap-6">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-500 to-amber-700 flex items-center justify-center text-white shadow-md shadow-black/20 ring-2 ring-white/10">
+          <span class="material-symbols-outlined text-[28px]">local_cafe</span>
+        </div>
+        <div>
+          <div class="flex items-center gap-2.5">
+            <h1 class="font-extrabold text-xl tracking-tight text-white flex items-center gap-2">
+              Velvet Roast
+            </h1>
+            <span class="text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded-full bg-brand-700 text-amber-200 border border-amber-300/20">
+              TERMINAL #01
+            </span>
+          </div>
+          <p class="text-xs text-amber-200/70 tracking-wide font-medium mt-0.5 flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[14px]">storefront</span>
+            Specialty Roasters & Artisan Kitchen
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Indicators, Drawer & Staff -->
+    <div class="flex items-center gap-5">
+      <!-- Live Sync Status -->
+      <div class="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 text-xs font-semibold shadow-inner">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span id="liveStatusText">Live Sync Active</span>
+      </div>
+
+      <!-- Drawer Balance Card -->
+      <button onclick="switchTab('analytics')" class="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 transition-all text-xs text-amber-100 border border-white/10 shadow-sm group">
+        <div class="w-7 h-7 rounded-lg bg-amber-400/20 flex items-center justify-center group-hover:scale-105 transition-transform">
+          <span class="material-symbols-outlined text-[18px] text-amber-300">point_of_sale</span>
+        </div>
+        <div class="text-left">
+          <span class="text-[10px] text-amber-200/60 block font-medium uppercase tracking-wider">Drawer Balance</span>
+          <span id="headerDrawerBalance" class="font-mono font-bold text-sm text-white">₹16,869.00</span>
+        </div>
+      </button>
+
+      <!-- Active Staff Card -->
+      <div class="flex items-center gap-3 pl-4 border-l border-white/15">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-600 to-amber-500 flex items-center justify-center font-bold text-sm text-white shadow-sm ring-2 ring-white/10">
+          SJ
+        </div>
+        <div class="hidden md:block text-left">
+          <div class="text-xs font-bold leading-none text-white">Sarah Jenkins</div>
+          <div class="text-[11px] text-amber-200/70 font-medium leading-tight mt-1 flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+            Shift Lead Barista
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN NAVIGATION BAR ================= -->
+  <nav class="bg-white border-b border-slate-200/80 px-8 py-3 flex items-center justify-between shadow-sm sticky top-0 z-30 backdrop-blur-md bg-white/95">
+    <div class="flex items-center gap-2 overflow-x-auto" id="navTabs">
+      <button onclick="switchTab('floorplan')" id="tabBtn-floorplan" class="nav-btn flex items-center gap-2.5 px-5 py-2.5 rounded-xl font-bold text-sm transition-all text-brand-900 bg-brand-50 border border-brand-500/30 shadow-sm">
+        <span class="material-symbols-outlined text-[20px] text-brand-500">table_restaurant</span>
+        Table Management
+        <span id="badgeOccupiedCount" class="ml-1 px-2 py-0.5 rounded-full text-[11px] font-extrabold bg-amber-100 text-brand-700">5</span>
+      </button>
+      <button onclick="switchTab('register')" id="tabBtn-register" class="nav-btn flex items-center gap-2.5 px-5 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-500 hover:text-brand-900 hover:bg-slate-50">
+        <span class="material-symbols-outlined text-[20px]">shopping_cart_checkout</span>
+        Orders
+      </button>
+      <button onclick="switchTab('kds')" id="tabBtn-kds" class="nav-btn flex items-center gap-2.5 px-5 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-500 hover:text-brand-900 hover:bg-slate-50">
+        <span class="material-symbols-outlined text-[20px]">skillet</span>
+        Kitchen
+        <span id="badgeKdsCount" class="ml-1 px-2 py-0.5 rounded-full text-[11px] font-extrabold bg-red-100 text-red-700">4</span>
+      </button>
+      <button onclick="switchTab('checkout')" id="tabBtn-checkout" class="nav-btn flex items-center gap-2.5 px-5 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-500 hover:text-brand-900 hover:bg-slate-50">
+        <span class="material-symbols-outlined text-[20px]">receipt_long</span>
+        Billing & Pay
+      </button>
+      <button onclick="switchTab('inventory')" id="tabBtn-inventory" class="nav-btn flex items-center gap-2.5 px-5 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-500 hover:text-brand-900 hover:bg-slate-50">
+        <span class="material-symbols-outlined text-[20px]">inventory_2</span>
+        Inventory
+      </button>
+      <button onclick="switchTab('analytics')" id="tabBtn-analytics" class="nav-btn flex items-center gap-2.5 px-5 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-500 hover:text-brand-900 hover:bg-slate-50">
+        <span class="material-symbols-outlined text-[20px]">monitoring</span>
+        Daily Sales & Analytics
+      </button>
+    </div>
+
+    <!-- Quick Action -->
+    <div class="hidden lg:flex items-center gap-3">
+      <button onclick="startQuickTakeawayOrder()" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-white text-xs font-extrabold transition-all shadow-md shadow-brand-500/20 active:scale-95">
+        <span class="material-symbols-outlined text-[18px]">add_circle</span>
+        New Takeaway Order
+      </button>
+    </div>
+  </nav>
+
+  <!-- ================= MAIN CONTAINER ================= -->
+  <main class="flex-1 px-8 py-8 max-w-[1600px] w-full mx-auto space-y-8">
+
+    <!-- ================= TAB 1: FLOOR PLAN ================= -->
+    <section id="tab-floorplan" class="tab-content active space-y-7">
+      
+      <!-- Section Filters & Summary Bar -->
+      <div class="flex flex-wrap items-center justify-between gap-6 bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="flex items-center gap-2 overflow-x-auto" id="sectionFilterButtons">
+          <button onclick="filterFloorPlan('ALL')" class="sec-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-brand-900 text-white shadow-sm flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px]">domain</span> All Sections (12)
+          </button>
+          <button onclick="filterFloorPlan('sec-main')" class="sec-filter-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px]">coffee</span> Main Floor
+          </button>
+          <button onclick="filterFloorPlan('sec-patio')" class="sec-filter-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px]">yard</span> Patio Garden
+          </button>
+          <button onclick="filterFloorPlan('sec-mezz')" class="sec-filter-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px]">stairs</span> Mezzanine
+          </button>
+          <button onclick="filterFloorPlan('sec-bar')" class="sec-filter-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px]">local_bar</span> Takeaway Bar
+          </button>
+        </div>
+
+        <!-- Status Legend & Quick Stats -->
+        <div class="flex items-center gap-5 text-xs font-semibold">
+          <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200/60">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Available (<span id="countAvail">4</span>)
+          </div>
+          <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-red-50 text-red-700 border border-red-200/60">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span> Occupied (<span id="countOccup">5</span>)
+          </div>
+          <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-50 text-amber-700 border border-amber-200/60">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Bill Pending (<span id="countPending">2</span>)
+          </div>
+          <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-50 text-blue-700 border border-blue-200/60">
+            <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span> Reserved (<span id="countReserved">1</span>)
+          </div>
+        </div>
+      </div>
+
+      <!-- Tables Grid + Right Active Table Sidebar -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-7">
+        <div class="lg:col-span-8">
+          <div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-5" id="floorPlanGrid"></div>
+        </div>
+
+        <!-- Table Details Sidebar -->
+        <div class="lg:col-span-4 bg-white rounded-2xl border border-slate-200/90 shadow-md p-7 flex flex-col justify-between min-h-[580px]" id="tableDetailSidebar">
+          <div class="space-y-6">
+            <div class="flex items-start justify-between border-b border-slate-100 pb-5">
+              <div>
+                <h3 class="font-extrabold text-2xl text-brand-900 tracking-tight" id="detailTableTitle">Select a Table</h3>
+                <p class="text-xs text-slate-400 mt-1 font-medium" id="detailTableSubtitle">Click on any table card to inspect details</p>
+              </div>
+              <span id="detailBadge" class="badge-available px-3 py-1 rounded-full text-xs font-bold tracking-wide">Available</span>
+            </div>
+
+            <!-- Details Metadata Chips -->
+            <div class="grid grid-cols-3 gap-3 bg-slate-50/80 p-4 rounded-xl border border-slate-100 text-center text-xs">
+              <div>
+                <span class="text-slate-400 block font-medium mb-1">Capacity</span>
+                <span class="font-bold text-slate-700 text-sm flex items-center justify-center gap-1" id="detailCapacity">
+                  <span class="material-symbols-outlined text-[16px] text-slate-400">chair</span> --
+                </span>
+              </div>
+              <div>
+                <span class="text-slate-400 block font-medium mb-1">Duration</span>
+                <span class="font-bold text-slate-700 text-sm flex items-center justify-center gap-1" id="detailTime">
+                  <span class="material-symbols-outlined text-[16px] text-slate-400">timer</span> --
+                </span>
+              </div>
+              <div>
+                <span class="text-slate-400 block font-medium mb-1">Current Bill</span>
+                <span class="font-black text-brand-700 text-base font-mono" id="detailBill">₹0.00</span>
+              </div>
+            </div>
+
+            <!-- Items List in Current Order -->
+            <div class="space-y-3">
+              <div class="flex items-center justify-between pb-1">
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-[16px]">receipt</span> Active Ticket
+                </span>
+                <span class="text-xs font-bold text-brand-700 font-mono bg-brand-50 px-2.5 py-0.5 rounded-full" id="detailItemCount">0 items</span>
+              </div>
+              <div class="space-y-2.5 max-h-64 overflow-y-auto pr-1.5" id="detailItemsContainer">
+                <div class="py-12 text-center text-slate-400 space-y-2">
+                  <span class="material-symbols-outlined text-[36px] text-slate-300">restaurant_menu</span>
+                  <p class="text-xs font-medium">No active order for this table.<br>Click below to start ordering.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Action Buttons -->
+          <div class="pt-6 border-t border-slate-100 space-y-3" id="detailActionButtons">
+            <button id="btnStartOrder" onclick="openRegisterForSelectedTable()" class="w-full py-3.5 px-5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-extrabold text-sm transition-all shadow-md shadow-brand-500/20 flex items-center justify-center gap-2 active:scale-[0.98]">
+              <span class="material-symbols-outlined text-[20px]">add_shopping_cart</span>
+              <span>Take Order / Add Items</span>
+            </button>
+            <button id="btnCheckoutTable" onclick="openCheckoutForSelectedTable()" class="w-full py-3.5 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm transition-all shadow-md shadow-emerald-600/20 flex items-center justify-center gap-2 active:scale-[0.98]">
+              <span class="material-symbols-outlined text-[20px]">receipt</span>
+              <span>Proceed to Checkout & Pay</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 2: ORDER REGISTER ================= -->
+    <section id="tab-register" class="tab-content space-y-7">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-7">
+        
+        <!-- Menu Categories & Item Grid (8 cols) -->
+        <div class="lg:col-span-8 space-y-6">
+          <div class="bg-white p-3 rounded-2xl border border-slate-200/80 shadow-sm flex items-center gap-3 overflow-x-auto" id="registerCategoryTabs"></div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-5" id="registerMenuGrid"></div>
+        </div>
+
+        <!-- Active Order Cart (4 cols) -->
+        <div class="lg:col-span-4 bg-white rounded-2xl border border-slate-200/90 shadow-md p-7 flex flex-col justify-between min-h-[640px]">
+          <div class="space-y-5">
+            <!-- Order Target Selector (Table or Takeaway) -->
+            <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+              <div class="flex-1 pr-3">
+                <span class="text-xs text-slate-400 font-semibold block uppercase tracking-wider mb-1 flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[14px]">table_bar</span> Dining Option
+                </span>
+                <select id="cartTableSelect" class="w-full font-bold text-sm text-brand-900 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500/20">
+                  <option value="">Takeaway / Walk-in</option>
+                </select>
+              </div>
+              <div class="text-right">
+                <span class="text-xs text-slate-400 font-semibold block uppercase tracking-wider mb-1">Server</span>
+                <span class="text-xs font-extrabold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-lg inline-block">Sarah J.</span>
+              </div>
+            </div>
+
+            <!-- Cart Items List -->
+            <div>
+              <div class="flex items-center justify-between pb-3">
+                <span class="text-xs font-extrabold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-[16px]">shopping_bag</span> Order Cart (<span id="cartCount">0</span> items)
+                </span>
+                <button onclick="clearCart()" class="text-xs text-red-500 hover:text-red-700 font-semibold transition-colors flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[14px]">delete</span> Clear
+                </button>
+              </div>
+              <div class="space-y-3 max-h-80 overflow-y-auto pr-1.5" id="cartItemsList">
+                <div class="py-16 text-center text-slate-400 space-y-2">
+                  <span class="material-symbols-outlined text-[40px] text-slate-300">shopping_cart</span>
+                  <p class="text-xs font-medium">Your cart is empty.<br>Tap any item to add to order.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Order Special Instructions / Kitchen Request -->
+            <div class="p-3.5 bg-amber-50/80 rounded-2xl border border-amber-200/90 space-y-2">
+              <div class="flex items-center justify-between">
+                <label for="orderSpecialRequestInput" class="text-xs font-extrabold text-amber-950 flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-[16px] text-amber-600">room_service</span>
+                  Kitchen Special Instructions
+                </label>
+                <span class="text-[10px] font-bold text-amber-700 uppercase tracking-wider bg-amber-200/60 px-2 py-0.5 rounded-md">Alerts</span>
+              </div>
+              <input id="orderSpecialRequestInput" type="text" placeholder="e.g. Nut allergy, extra hot, deliver drinks first..." class="w-full text-xs bg-white border border-amber-300 rounded-xl px-3 py-2 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500/30">
+              <div class="flex flex-wrap gap-1.5 pt-0.5">
+                <button type="button" onclick="addQuickSpecialInstruction('⚠️ Nut Allergy')" class="px-2 py-0.5 rounded-lg bg-amber-100 hover:bg-amber-200 text-amber-900 text-[10px] font-extrabold transition-all">+ Nut Allergy</button>
+                <button type="button" onclick="addQuickSpecialInstruction('⚡ Expedite')" class="px-2 py-0.5 rounded-lg bg-amber-100 hover:bg-amber-200 text-amber-900 text-[10px] font-extrabold transition-all">+ Expedite</button>
+                <button type="button" onclick="addQuickSpecialInstruction('☕ Drinks First')" class="px-2 py-0.5 rounded-lg bg-amber-100 hover:bg-amber-200 text-amber-900 text-[10px] font-extrabold transition-all">+ Drinks First</button>
+                <button type="button" onclick="addQuickSpecialInstruction('🥛 Oat Milk')" class="px-2 py-0.5 rounded-lg bg-amber-100 hover:bg-amber-200 text-amber-900 text-[10px] font-extrabold transition-all">+ Oat Milk</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cart Financials & Send Action -->
+          <div class="pt-6 border-t border-slate-100 space-y-4">
+            <div class="space-y-2 text-xs bg-slate-50/80 p-4 rounded-xl border border-slate-100">
+              <div class="flex justify-between text-slate-500">
+                <span>Subtotal</span>
+                <span class="font-mono font-bold text-slate-700" id="cartSubtotal">₹0.00</span>
+              </div>
+              <div class="flex justify-between text-slate-500">
+                <span>GST Tax (5%)</span>
+                <span class="font-mono font-bold text-slate-700" id="cartTax">₹0.00</span>
+              </div>
+              <div class="flex justify-between text-base font-black text-brand-900 pt-2 border-t border-slate-200">
+                <span>Total Due</span>
+                <span class="font-mono text-brand-700 text-lg" id="cartTotal">₹0.00</span>
+              </div>
+            </div>
+
+            <button onclick="submitOrderFromCart()" id="btnSubmitCart" class="w-full py-4 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-extrabold text-sm transition-all shadow-md shadow-brand-500/20 flex items-center justify-center gap-2 active:scale-[0.98]">
+              <span class="material-symbols-outlined text-[20px]">send</span>
+              <span>Send Order to Kitchen Rail</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 3: KITCHEN DISPLAY SYSTEM ================= -->
+    <section id="tab-kds" class="tab-content space-y-7">
+      <div class="flex items-center justify-between bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center text-red-600">
+            <span class="material-symbols-outlined text-[24px]">soup_kitchen</span>
+          </div>
+          <div>
+            <h2 class="font-extrabold text-lg text-slate-800 tracking-tight flex items-center gap-2">
+              Kitchen Display & Expedite Rail
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span>
+            </h2>
+            <p class="text-xs text-slate-400 font-medium">Real-time order tickets firing automatically from Floor Plan and Register</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <button onclick="fetchKdsTickets()" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center gap-2 transition-all">
+            <span class="material-symbols-outlined text-[18px]">refresh</span> Refresh Tickets
+          </button>
+        </div>
+      </div>
+
+      <!-- KDS Tickets Container -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="kdsTicketsGrid"></div>
+    </section>
+
+    <!-- ================= TAB 4: BILLING & CHECKOUT ================= -->
+    <section id="tab-checkout" class="tab-content space-y-7">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-7">
+        
+        <!-- Left: Order Selector & Bill Preview -->
+        <div class="lg:col-span-6 bg-white p-8 rounded-2xl border border-slate-200/90 shadow-md space-y-6">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-5">
+            <div>
+              <h2 class="font-extrabold text-xl text-brand-900 tracking-tight flex items-center gap-2">
+                <span class="material-symbols-outlined text-brand-500">receipt_long</span>
+                Guest Check Breakdown
+              </h2>
+              <p class="text-xs text-slate-400 font-medium mt-1">Select an active table or order to settle payment</p>
+            </div>
+            <select id="checkoutOrderSelect" onchange="loadCheckoutForOrder(this.value)" class="text-xs font-bold px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-brand-900 outline-none focus:ring-2 focus:ring-brand-500/20">
+            </select>
+          </div>
+
+          <!-- Itemized Check -->
+          <div class="space-y-3 max-h-80 overflow-y-auto pr-1" id="checkoutItemsList"></div>
+
+          <!-- Totals Breakdown -->
+          <div class="bg-slate-50/80 p-5 rounded-2xl space-y-2.5 border border-slate-100 text-xs">
+            <div class="flex justify-between text-slate-500">
+              <span>Subtotal</span>
+              <span class="font-mono font-bold text-slate-700 text-sm" id="checkoutSubtotal">₹0.00</span>
+            </div>
+            <div class="flex justify-between text-slate-500">
+              <span>GST Tax (5%)</span>
+              <span class="font-mono font-bold text-slate-700 text-sm" id="checkoutTax">₹0.00</span>
+            </div>
+            <div class="flex justify-between text-slate-500">
+              <span>Tip Selected</span>
+              <span class="font-mono font-bold text-emerald-600 text-sm" id="checkoutTipDisplay">₹0.00</span>
+            </div>
+            <div class="flex justify-between text-xl font-black text-brand-900 pt-3 border-t border-slate-200">
+              <span>Total Balance Due</span>
+              <span class="font-mono text-brand-700 text-2xl font-black" id="checkoutTotalDue">₹0.00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Payment Methods, Split, & Finalize -->
+        <div class="lg:col-span-6 bg-white p-8 rounded-2xl border border-slate-200/90 shadow-md space-y-6">
+          
+          <!-- Tip Presets -->
+          <div>
+            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px]">volunteer_activism</span> Tip Amount
+            </label>
+            <div class="grid grid-cols-4 gap-2.5" id="tipButtonsGroup">
+              <button onclick="setTip(0)" class="tip-btn py-3 rounded-xl border text-xs font-extrabold bg-brand-900 text-white border-brand-900 transition-all">No Tip</button>
+              <button onclick="setTip(0.05)" class="tip-btn py-3 rounded-xl border text-xs font-extrabold bg-white text-slate-700 border-slate-200 hover:bg-slate-50 transition-all">5%</button>
+              <button onclick="setTip(0.10)" class="tip-btn py-3 rounded-xl border text-xs font-extrabold bg-white text-slate-700 border-slate-200 hover:bg-slate-50 transition-all">10%</button>
+              <button onclick="setTip(0.15)" class="tip-btn py-3 rounded-xl border text-xs font-extrabold bg-white text-slate-700 border-slate-200 hover:bg-slate-50 transition-all">15%</button>
+            </div>
+          </div>
+
+          <!-- Split Bill Option -->
+          <div class="p-4 rounded-2xl bg-amber-50/60 border border-amber-200/80 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-[24px] text-brand-500">pie_chart</span>
+              <div>
+                <span class="text-xs font-extrabold text-brand-900 block">Split Check Equally</span>
+                <span class="text-[11px] text-slate-500">Divide balance evenly per guest</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <select id="splitGuestsCount" class="text-xs font-bold px-3 py-1.5 rounded-lg bg-white border border-amber-300 outline-none">
+                <option value="2">2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4">4 Guests</option>
+                <option value="5">5 Guests</option>
+              </select>
+              <button onclick="calculateSplit()" class="px-3.5 py-1.5 rounded-lg bg-brand-500 text-white text-xs font-extrabold hover:bg-brand-600 shadow-sm transition-all">
+                Split
+              </button>
+            </div>
+          </div>
+          <div id="splitResultBox" class="hidden text-xs bg-slate-50 p-3 rounded-xl border border-slate-200 text-slate-700 font-medium"></div>
+
+          <!-- Payment Methods -->
+          <div>
+            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px]">payments</span> Payment Method
+            </label>
+            <div class="grid grid-cols-3 gap-3.5">
+              <button onclick="selectPaymentMethod('CREDIT_CARD')" id="pm-card" class="pm-btn p-4 rounded-2xl border-2 border-brand-500 bg-brand-50/60 flex flex-col items-center gap-2 transition-all group">
+                <div class="w-10 h-10 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-700 group-hover:scale-105 transition-transform">
+                  <span class="material-symbols-outlined text-[26px]">credit_card</span>
+                </div>
+                <span class="text-xs font-extrabold text-brand-900">Card</span>
+              </button>
+              <button onclick="selectPaymentMethod('DIGITAL_WALLET')" id="pm-wallet" class="pm-btn p-4 rounded-2xl border border-slate-200 hover:border-slate-300 flex flex-col items-center gap-2 transition-all group">
+                <div class="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-600 group-hover:scale-105 transition-transform">
+                  <span class="material-symbols-outlined text-[26px]">qr_code_scanner</span>
+                </div>
+                <span class="text-xs font-extrabold text-slate-700">UPI / QR</span>
+              </button>
+              <button onclick="selectPaymentMethod('CASH')" id="pm-cash" class="pm-btn p-4 rounded-2xl border border-slate-200 hover:border-slate-300 flex flex-col items-center gap-2 transition-all group">
+                <div class="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-600 group-hover:scale-105 transition-transform">
+                  <span class="material-symbols-outlined text-[26px]">payments</span>
+                </div>
+                <span class="text-xs font-extrabold text-slate-700">Cash</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Cash Tender Input (shown if Cash selected) -->
+          <div id="cashTenderSection" class="hidden space-y-2 bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <label class="block text-xs font-bold text-slate-600">Cash Tendered by Customer</label>
+            <div class="flex items-center gap-2">
+              <span class="text-slate-400 font-black text-lg">₹</span>
+              <input type="number" id="cashTenderInput" step="10" placeholder="0.00" class="w-full text-lg font-black font-mono px-4 py-2 rounded-xl border border-slate-300 outline-none focus:ring-2 focus:ring-brand-500/20">
+            </div>
+          </div>
+
+          <!-- Process Payment Button -->
+          <button onclick="processFinalPayment()" id="btnProcessPayment" class="w-full py-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-base transition-all shadow-lg shadow-emerald-600/20 flex items-center justify-center gap-2.5 active:scale-[0.98]">
+            <span class="material-symbols-outlined text-[24px]">check_circle</span>
+            <span>Confirm & Complete Payment</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 5: DAILY ANALYTICS ================= -->
+    <section id="tab-analytics" class="tab-content space-y-7">
+      
+      <!-- Big Visual KPI Cards with Icons & Rupee Totals -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="analyticsKPIs"></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-7">
+        <!-- Top Selling Items (6 cols) -->
+        <div class="lg:col-span-6 bg-white p-8 rounded-2xl border border-slate-200/90 shadow-md space-y-5">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+            <h3 class="font-extrabold text-lg text-brand-900 flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center text-amber-600">
+                <span class="material-symbols-outlined text-[20px]">award_star</span>
+              </span>
+              Top Selling Products Today
+            </h3>
+            <span class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Ranked by volume</span>
+          </div>
+          <div class="divide-y divide-slate-100 space-y-2" id="analyticsTopItems"></div>
+        </div>
+
+        <!-- Recent Transactions Audit (6 cols) -->
+        <div class="lg:col-span-6 bg-white p-8 rounded-2xl border border-slate-200/90 shadow-md space-y-5">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+            <h3 class="font-extrabold text-lg text-brand-900 flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600">
+                <span class="material-symbols-outlined text-[20px]">history</span>
+              </span>
+              Recent Settled Transactions
+            </h3>
+            <span class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Live Audit Trail</span>
+          </div>
+          <div class="divide-y divide-slate-100 max-h-96 overflow-y-auto pr-1" id="analyticsRecentTx"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 6: INVENTORY ================= -->
+    <section id="tab-inventory" class="tab-content space-y-7">
+      <div class="flex items-center justify-between bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600">
+            <span class="material-symbols-outlined text-[24px]">warehouse</span>
+          </div>
+          <div>
+            <h2 class="font-extrabold text-lg text-brand-900 tracking-tight">Ingredient & Stock Management</h2>
+            <p class="text-xs text-slate-400 font-medium">Automated stock deduction with low-stock reorder thresholds</p>
+          </div>
+        </div>
+        <button onclick="fetchInventory()" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center gap-2 transition-all">
+          <span class="material-symbols-outlined text-[18px]">refresh</span> Refresh Stock
+        </button>
+      </div>
+
+      <!-- Inventory Table -->
+      <div class="bg-white rounded-2xl border border-slate-200/90 shadow-md overflow-hidden">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-slate-50/80 text-slate-400 uppercase font-bold text-[11px] tracking-wider border-b border-slate-200">
+            <tr>
+              <th class="py-4 px-6">Item Name</th>
+              <th class="py-4 px-6">Category</th>
+              <th class="py-4 px-6">Current Stock</th>
+              <th class="py-4 px-6">Threshold</th>
+              <th class="py-4 px-6">Status</th>
+              <th class="py-4 px-6 text-right">Quick Restock</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 font-medium text-slate-700" id="inventoryTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= RECEIPT MODAL ================= -->
+  <div id="receiptModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-8 shadow-2xl space-y-5 animate-in fade-in zoom-in-95 duration-200">
+      <div class="text-center border-b border-dashed border-slate-300 pb-4">
+        <div class="w-12 h-12 rounded-2xl bg-brand-50 text-brand-700 flex items-center justify-center mx-auto mb-2">
+          <span class="material-symbols-outlined text-[28px]">local_cafe</span>
+        </div>
+        <h3 class="font-black text-xl text-brand-900 tracking-tight">VELVET ROAST CAFE</h3>
+        <p class="text-xs text-slate-400 font-medium">Terminal #01 • GST Tax Invoice</p>
+        <p class="text-xs text-slate-400 font-mono mt-1" id="receiptTime">--</p>
+      </div>
+
+      <div class="text-xs space-y-2 max-h-52 overflow-y-auto" id="receiptModalItems"></div>
+
+      <div class="border-t border-dashed border-slate-300 pt-4 space-y-1.5 text-xs">
+        <div class="flex justify-between text-slate-500"><span>Subtotal:</span><span id="receiptSubtotal" class="font-mono font-bold">₹0.00</span></div>
+        <div class="flex justify-between text-slate-500"><span>GST (5%):</span><span id="receiptTax" class="font-mono font-bold">₹0.00</span></div>
+        <div class="flex justify-between text-slate-500"><span>Tip:</span><span id="receiptTip" class="font-mono font-bold">₹0.00</span></div>
+        <div class="flex justify-between font-black text-base text-brand-900 pt-2 border-t border-slate-200">
+          <span>TOTAL PAID:</span>
+          <span id="receiptTotal" class="font-mono text-brand-700">₹0.00</span>
+        </div>
+        <div class="text-center text-xs text-emerald-600 font-extrabold pt-2 flex items-center justify-center gap-1">
+          <span class="material-symbols-outlined text-[16px]">verified</span> PAYMENT COMPLETED
+        </div>
+      </div>
+
+      <div class="flex gap-3 pt-2">
+        <button onclick="window.print()" class="flex-1 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-xs font-extrabold text-slate-700 transition-all flex items-center justify-center gap-1.5">
+          <span class="material-symbols-outlined text-[16px]">print</span> Print
+        </button>
+        <button onclick="closeReceiptModal()" class="flex-1 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 text-xs font-extrabold text-white transition-all shadow-md shadow-brand-500/20">
+          Done
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <script>
+    const MENU_IMAGES = {
+      "Caramel Macchiato": "https://images.unsplash.com/photo-1485808191629-56ade4408d21?w=500&auto=format&fit=crop&q=80",
+      "Iced Spanish Latte": "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=500&auto=format&fit=crop&q=80",
+      "Cold Brew Reserve": "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500&auto=format&fit=crop&q=80",
+      "Velvet Flat White": "https://images.unsplash.com/photo-1577968897966-3d4325b36b61?w=500&auto=format&fit=crop&q=80",
+      "Matcha Ceremonial Latte": "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=500&auto=format&fit=crop&q=80",
+      "Artisan Croissant": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=500&auto=format&fit=crop&q=80",
+      "Almond Pain au Chocolat": "https://images.unsplash.com/photo-1530610476181-d83430b64dcd?w=500&auto=format&fit=crop&q=80",
+      "Avocado Sourdough": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=500&auto=format&fit=crop&q=80",
+      "Truffle Benedict": "https://images.unsplash.com/photo-1608039829572-78524f79c4c7?w=500&auto=format&fit=crop&q=80",
+      "Brioche French Toast": "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=500&auto=format&fit=crop&q=80"
+    };
+    const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&auto=format&fit=crop&q=80";
+
+    // App State
+    let currentTab = 'floorplan';
+    let allTables = [];
+    let selectedTable = null;
+    let menuCategories = [];
+    let activeCart = { table_id: null, items: [] };
+    let currentPaymentMethod = 'CREDIT_CARD';
+    let currentTipRate = 0.0;
+    let currentCheckoutOrder = null;
+
+    // --- TAB SWITCHING (ALWAYS FRESH DATA) ---
+    function switchTab(tabId) {
+      currentTab = tabId;
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.getElementById(`tab-${tabId}`).classList.add('active');
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.className = 'nav-btn flex items-center gap-2.5 px-5 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-500 hover:text-brand-900 hover:bg-slate-50';
+      });
+      const activeBtn = document.getElementById(`tabBtn-${tabId}`);
+      if (activeBtn) {
+        activeBtn.className = 'nav-btn flex items-center gap-2.5 px-5 py-2.5 rounded-xl font-bold text-sm transition-all text-brand-900 bg-brand-50 border border-brand-500/30 shadow-sm';
+      }
+
+      // Always reload the data for the opened view
+      if (tabId === 'floorplan') fetchFloorPlan();
+      if (tabId === 'register') loadRegisterData();
+      if (tabId === 'kds') fetchKdsTickets();
+      if (tabId === 'checkout') loadCheckoutTab();
+      if (tabId === 'analytics') fetchAnalytics();
+      if (tabId === 'inventory') fetchInventory();
+    }
+
+    // --- 1. FLOOR PLAN LOGIC ---
+    let activeSecFilter = 'ALL';
+    async function fetchFloorPlan() {
+      try {
+        const res = await fetch('/api/tables');
+        if (!res.ok) return;
+        allTables = await res.json();
+        renderFloorPlan();
+        updateHeaderStats();
+      } catch (e) { console.error('Error fetching tables:', e); }
+    }
+
+    function filterFloorPlan(secId) {
+      activeSecFilter = secId;
+      document.querySelectorAll('.sec-filter-btn').forEach(b => {
+        b.className = 'sec-filter-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 flex items-center gap-1.5';
+      });
+      if (event && event.currentTarget) {
+        event.currentTarget.className = 'sec-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-brand-900 text-white shadow-sm flex items-center gap-1.5';
+      }
+      renderFloorPlan();
+    }
+
+    function renderFloorPlan() {
+      const container = document.getElementById('floorPlanGrid');
+      container.innerHTML = '';
+
+      const filtered = activeSecFilter === 'ALL' 
+        ? allTables 
+        : allTables.filter(t => t.section_id === activeSecFilter);
+
+      filtered.forEach(t => {
+        const isSelected = selectedTable && selectedTable.id === t.id;
+        let badgeClass = 'badge-available';
+        let dotColor = 'bg-emerald-500';
+        let iconName = 'table_restaurant';
+
+        if (t.status === 'Occupied') { 
+          badgeClass = 'badge-occupied'; 
+          dotColor = 'bg-red-500'; 
+          iconName = 'group';
+        } else if (t.status === 'Bill Pending') { 
+          badgeClass = 'badge-pending'; 
+          dotColor = 'bg-amber-500'; 
+          iconName = 'receipt';
+        } else if (t.status === 'Reserved') { 
+          badgeClass = 'badge-reserved'; 
+          dotColor = 'bg-blue-500'; 
+          iconName = 'bookmark';
+        }
+
+        const elapsed = t.elapsed_minutes !== null ? `${t.elapsed_minutes}m` : '--';
+        const bill = t.current_bill_total > 0 ? `₹${t.current_bill_total.toFixed(2)}` : '₹0.00';
+
+        const card = document.createElement('div');
+        card.className = `p-5 rounded-2xl bg-white border ${isSelected ? 'border-brand-500 ring-4 ring-brand-500/10 shadow-lg' : 'border-slate-200/80 shadow-sm hover:shadow-md hover:border-slate-300'} transition-all cursor-pointer flex flex-col justify-between min-h-[175px] group`;
+        card.onclick = () => selectFloorTable(t.id);
+
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between pb-3">
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center text-slate-600 group-hover:bg-brand-50 group-hover:text-brand-700 transition-colors">
+                  <span class="material-symbols-outlined text-[18px]">${iconName}</span>
+                </div>
+                <span class="font-extrabold text-base text-brand-900">${t.table_number}</span>
+              </div>
+              <span class="${badgeClass} px-2.5 py-0.5 rounded-full text-[11px] font-bold flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full ${dotColor}"></span> ${t.status}
+              </span>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-slate-500 mb-3 font-medium">
+              <span class="flex items-center gap-1">
+                <span class="material-symbols-outlined text-[15px] text-slate-400">chair</span> ${t.capacity} Seats (${t.guest_count} Guests)
+              </span>
+              <span>•</span>
+              <span class="font-semibold text-slate-600 flex items-center gap-0.5">
+                <span class="material-symbols-outlined text-[14px] text-slate-400">timer</span> ${elapsed}
+              </span>
+            </div>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span class="text-slate-400 font-semibold">${t.current_item_count} items</span>
+            <span class="font-black text-brand-900 text-base font-mono">${bill}</span>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      // Update occupancy counts
+      document.getElementById('countAvail').textContent = allTables.filter(t => t.status === 'Available').length;
+      document.getElementById('countOccup').textContent = allTables.filter(t => t.status === 'Occupied').length;
+      document.getElementById('countPending').textContent = allTables.filter(t => t.status === 'Bill Pending').length;
+      document.getElementById('countReserved').textContent = allTables.filter(t => t.status === 'Reserved').length;
+      document.getElementById('badgeOccupiedCount').textContent = allTables.filter(t => t.status === 'Occupied').length;
+    }
+
+    async function selectFloorTable(tableId) {
+      try {
+        const res = await fetch(`/api/tables/${tableId}`);
+        if (!res.ok) return;
+        const data = await res.json();
+        selectedTable = data.table;
+
+        // Populate sidebar
+        document.getElementById('detailTableTitle').textContent = data.table.table_number;
+        document.getElementById('detailTableSubtitle').textContent = `${data.table.section_name} • ${data.table.status}`;
+        document.getElementById('detailCapacity').innerHTML = `<span class="material-symbols-outlined text-[16px] text-slate-400">chair</span> ${data.table.capacity} Seats`;
+        document.getElementById('detailTime').innerHTML = `<span class="material-symbols-outlined text-[16px] text-slate-400">timer</span> ${data.table.seated_at ? 'Active' : '--'}`;
+        document.getElementById('detailBill').textContent = `₹${(data.table.bill_total || 0).toFixed(2)}`;
+
+        const badge = document.getElementById('detailBadge');
+        badge.textContent = data.table.status;
+        badge.className = data.table.status === 'Occupied' 
+          ? 'badge-occupied px-3 py-1 rounded-full text-xs font-bold tracking-wide' 
+          : 'badge-available px-3 py-1 rounded-full text-xs font-bold tracking-wide';
+
+        const itemsBox = document.getElementById('detailItemsContainer');
+        if (data.order_items && data.order_items.length > 0) {
+          document.getElementById('detailItemCount').textContent = `${data.order_items.length} items`;
+          itemsBox.innerHTML = data.order_items.map(i => `
+            <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs">
+              <div class="flex items-center gap-2.5">
+                <span class="w-6 h-6 rounded-lg bg-white border border-slate-200 font-bold text-slate-700 flex items-center justify-center shrink-0">${i.quantity}</span>
+                <div>
+                  <span class="font-bold text-slate-800">${i.item_name}</span>
+                  <span class="text-slate-400 block text-[11px] font-medium">${i.modifiers_text || i.notes || ''}</span>
+                </div>
+              </div>
+              <span class="font-bold font-mono text-slate-800 text-sm">₹${i.item_total.toFixed(2)}</span>
+            </div>
+          `).join('');
+        } else {
+          document.getElementById('detailItemCount').textContent = '0 items';
+          itemsBox.innerHTML = `
+            <div class="py-12 text-center text-slate-400 space-y-2">
+              <span class="material-symbols-outlined text-[36px] text-slate-300">restaurant_menu</span>
+              <p class="text-xs font-medium">No active order for this table.<br>Click below to start ordering.</p>
+            </div>
+          `;
+        }
+
+        renderFloorPlan();
+      } catch (e) { console.error(e); }
+    }
+
+    function openRegisterForSelectedTable() {
+      if (selectedTable) {
+        activeCart.table_id = selectedTable.id;
+      }
+      switchTab('register');
+    }
+
+    function openCheckoutForSelectedTable() {
+      if (selectedTable && selectedTable.current_order_id) {
+        switchTab('checkout');
+        loadCheckoutForOrder(selectedTable.current_order_id);
+      } else {
+        alert('Please select an occupied table with an active bill.');
+      }
+    }
+
+    function startQuickTakeawayOrder() {
+      activeCart.table_id = null;
+      switchTab('register');
+    }
+
+    // --- 2. ORDER REGISTER & MENU WITH IMAGERY ---
+    async function loadRegisterData() {
+      try {
+        const res = await fetch('/api/menu/categories');
+        if (!res.ok) return;
+        menuCategories = await res.json();
+        renderRegisterCategories();
+        populateCartTableDropdown();
+      } catch (e) { console.error(e); }
+    }
+
+    function renderRegisterCategories() {
+      const tabs = document.getElementById('registerCategoryTabs');
+      tabs.innerHTML = '';
+      
+      const categoryIcons = {
+        "Coffee & Espresso": "local_cafe",
+        "Bakery & Pastries": "bakery_dining",
+        "Brunch & Kitchen": "brunch_dining",
+        "Seasonal Specials": "award_star"
+      };
+
+      menuCategories.forEach((cat, idx) => {
+        const icon = categoryIcons[cat.name] || "restaurant";
+        const btn = document.createElement('button');
+        btn.className = `px-5 py-2.5 rounded-xl text-xs font-bold shrink-0 transition-all flex items-center gap-2 ${idx === 0 ? 'bg-brand-900 text-white shadow-sm' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`;
+        btn.innerHTML = `<span class="material-symbols-outlined text-[18px]">${icon}</span> ${cat.name}`;
+        btn.onclick = () => {
+          document.querySelectorAll('#registerCategoryTabs button').forEach(b => {
+            b.className = 'px-5 py-2.5 rounded-xl text-xs font-bold shrink-0 transition-all bg-slate-100 text-slate-700 hover:bg-slate-200 flex items-center gap-2';
+          });
+          btn.className = 'px-5 py-2.5 rounded-xl text-xs font-bold shrink-0 transition-all bg-brand-900 text-white shadow-sm flex items-center gap-2';
+          renderRegisterItems(cat.items);
+        };
+        tabs.appendChild(btn);
+      });
+
+      if (menuCategories.length > 0) {
+        renderRegisterItems(menuCategories[0].items);
+      }
+    }
+
+    function renderRegisterItems(items) {
+      const grid = document.getElementById('registerMenuGrid');
+      grid.innerHTML = '';
+      items.forEach(itm => {
+        const imgUrl = MENU_IMAGES[itm.name] || DEFAULT_IMAGE;
+        const card = document.createElement('div');
+        card.className = 'group rounded-2xl bg-white border border-slate-200/80 hover:border-brand-500/80 shadow-sm hover:shadow-xl cursor-pointer transition-all duration-300 flex flex-col justify-between overflow-hidden active:scale-[0.98]';
+        card.onclick = () => addItemToCart(itm);
+
+        card.innerHTML = `
+          <div>
+            <div class="relative h-32 w-full overflow-hidden bg-slate-100">
+              <img src="${imgUrl}" alt="${itm.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60"></div>
+              <span class="absolute bottom-2.5 right-2.5 bg-black/75 backdrop-blur-md text-white font-mono font-black text-xs px-2.5 py-1 rounded-lg">
+                ₹${itm.price.toFixed(2)}
+              </span>
+            </div>
+            <div class="p-4 space-y-1.5">
+              <span class="font-extrabold text-sm text-brand-900 block leading-snug group-hover:text-brand-600 transition-colors">${itm.name}</span>
+              <p class="text-[11px] text-slate-400 line-clamp-2 leading-relaxed font-medium">${itm.description || ''}</p>
+            </div>
+          </div>
+          <div class="px-4 pb-4 pt-1">
+            <button class="w-full py-2 rounded-xl bg-brand-50 hover:bg-brand-500 text-brand-700 hover:text-white font-extrabold text-xs transition-colors flex items-center justify-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px]">add</span> Add to Ticket
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function populateCartTableDropdown() {
+      const select = document.getElementById('cartTableSelect');
+      select.innerHTML = '<option value="">Takeaway / Walk-in</option>';
+      allTables.forEach(t => {
+        const opt = document.createElement('option');
+        opt.value = t.id;
+        opt.textContent = `${t.table_number} (${t.status})`;
+        if (activeCart.table_id === t.id) opt.selected = true;
+        select.appendChild(opt);
+      });
+      select.onchange = (e) => { activeCart.table_id = e.target.value || null; };
+    }
+
+    function addItemToCart(item) {
+      const existing = activeCart.items.find(i => i.item_id === item.id);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        activeCart.items.push({
+          item_id: item.id,
+          name: item.name,
+          unit_price: item.price,
+          quantity: 1,
+          notes: '',
+          modifiers: []
+        });
+      }
+      renderCart();
+    }
+
+    function updateCartItemQty(idx, delta) {
+      activeCart.items[idx].quantity += delta;
+      if (activeCart.items[idx].quantity <= 0) {
+        activeCart.items.splice(idx, 1);
+      }
+      renderCart();
+    }
+
+    function setCartItemNote(idx) {
+      const current = activeCart.items[idx].notes || '';
+      const note = prompt(`Special request / note for ${activeCart.items[idx].name} (e.g. Extra hot, oat milk, less spicy, no onions):`, current);
+      if (note !== null) {
+        activeCart.items[idx].notes = note.trim();
+        renderCart();
+      }
+    }
+
+    function addQuickSpecialInstruction(text) {
+      const input = document.getElementById('orderSpecialRequestInput');
+      if (!input) return;
+      if (input.value.trim()) {
+        input.value = input.value.trim() + ', ' + text;
+      } else {
+        input.value = text;
+      }
+    }
+
+    function clearCart() {
+      activeCart.items = [];
+      const spInput = document.getElementById('orderSpecialRequestInput');
+      if (spInput) spInput.value = '';
+      renderCart();
+    }
+
+    function renderCart() {
+      const list = document.getElementById('cartItemsList');
+      if (activeCart.items.length === 0) {
+        list.innerHTML = `
+          <div class="py-16 text-center text-slate-400 space-y-2">
+            <span class="material-symbols-outlined text-[40px] text-slate-300">shopping_cart</span>
+            <p class="text-xs font-medium">Your cart is empty.<br>Tap any item to add to order.</p>
+          </div>
+        `;
+        document.getElementById('cartCount').textContent = '0';
+        document.getElementById('cartSubtotal').textContent = '₹0.00';
+        document.getElementById('cartTax').textContent = '₹0.00';
+        document.getElementById('cartTotal').textContent = '₹0.00';
+        return;
+      }
+
+      let subtotal = 0;
+      let count = 0;
+      list.innerHTML = activeCart.items.map((i, idx) => {
+        const itemTot = i.unit_price * i.quantity;
+        subtotal += itemTot;
+        count += i.quantity;
+        return `
+          <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 text-xs space-y-2">
+            <div class="flex items-center justify-between">
+              <div class="flex-1 truncate mr-2">
+                <span class="font-bold text-slate-800 block truncate text-sm">${i.name}</span>
+                <span class="text-slate-400 font-mono text-[11px]">₹${i.unit_price.toFixed(2)} each</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="updateCartItemQty(${idx}, -1)" class="w-6 h-6 rounded-lg bg-white border border-slate-200 font-bold hover:bg-slate-100 transition-colors">-</button>
+                <span class="font-mono font-bold w-4 text-center">${i.quantity}</span>
+                <button onclick="updateCartItemQty(${idx}, 1)" class="w-6 h-6 rounded-lg bg-white border border-slate-200 font-bold hover:bg-slate-100 transition-colors">+</button>
+                <span class="font-mono font-black text-brand-900 ml-2 w-14 text-right">₹${itemTot.toFixed(2)}</span>
+              </div>
+            </div>
+
+            <!-- Item Special Request Display or Add Button -->
+            ${i.notes ? `
+              <div class="flex items-center justify-between bg-amber-50 text-amber-900 px-3 py-1.5 rounded-xl border border-amber-200 text-xs">
+                <span class="flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-[15px] text-amber-600">edit_note</span>
+                  <span>Special Request: <b>${i.notes}</b></span>
+                </span>
+                <button onclick="setCartItemNote(${idx})" class="text-amber-700 hover:text-amber-950 font-bold underline text-[11px] ml-2">Edit</button>
+              </div>
+            ` : `
+              <button onclick="setCartItemNote(${idx})" class="text-[11px] font-bold text-amber-700 hover:text-amber-900 flex items-center gap-1 transition-colors pt-0.5">
+                <span class="material-symbols-outlined text-[13px]">add_circle</span> Add Special Request / Extra
+              </button>
+            `}
+          </div>
+        `;
+      }).join('');
+
+      const tax = subtotal * 0.05;
+      const total = subtotal + tax;
+
+      document.getElementById('cartCount').textContent = count;
+      document.getElementById('cartSubtotal').textContent = `₹${subtotal.toFixed(2)}`;
+      document.getElementById('cartTax').textContent = `₹${tax.toFixed(2)}`;
+      document.getElementById('cartTotal').textContent = `₹${total.toFixed(2)}`;
+    }
+
+    async function submitOrderFromCart() {
+      if (activeCart.items.length === 0) {
+        alert('Cart is empty.');
+        return;
+      }
+
+      const orderSpecialInstructions = document.getElementById('orderSpecialRequestInput')?.value.trim() || null;
+
+      const payload = {
+        table_id: activeCart.table_id,
+        order_type: activeCart.table_id ? 'DINE_IN' : 'TAKEAWAY',
+        guest_count: 2,
+        server_name: 'Sarah Jenkins',
+        special_instructions: orderSpecialInstructions,
+        items: activeCart.items.map(i => ({
+          item_id: i.item_id,
+          quantity: i.quantity,
+          notes: i.notes || null,
+          modifiers: i.modifiers
+        }))
+      };
+
+      try {
+        const res = await fetch('/api/orders', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) {
+          const err = await res.json();
+          alert('Failed to place order: ' + (err.detail || 'Error'));
+          return;
+        }
+
+        const order = await res.json();
+        alert(`Order #${order.order_number} created and sent to kitchen rail!`);
+        clearCart();
+        
+        // Instant updates across all tabs
+        fetchFloorPlan();
+        fetchKdsTickets();
+        fetchAnalytics();
+        updateHeaderStats();
+        switchTab('kds'); // Switch to KDS to see the newly generated ticket!
+      } catch (e) {
+        alert('Order placement failed: ' + e.message);
+      }
+    }
+
+    // --- 3. KITCHEN DISPLAY SYSTEM (KDS) ---
+    async function fetchKdsTickets() {
+      try {
+        const res = await fetch('/api/kds/tickets');
+        if (!res.ok) return;
+        const tickets = await res.json();
+        renderKdsTickets(tickets);
+      } catch (e) { console.error(e); }
+    }
+
+    function renderKdsTickets(tickets) {
+      const container = document.getElementById('kdsTicketsGrid');
+      document.getElementById('badgeKdsCount').textContent = tickets.length;
+      if (tickets.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-20 text-center text-slate-400 space-y-3">
+            <div class="w-16 h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto">
+              <span class="material-symbols-outlined text-[36px]">task_alt</span>
+            </div>
+            <p class="text-sm font-bold text-slate-700">All Caught Up!</p>
+            <p class="text-xs text-slate-400">No pending orders in the kitchen queue right now.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = tickets.map(t => {
+        const isReady = t.status === 'READY';
+        const statusBadge = isReady 
+          ? '<span class="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-emerald-100 text-emerald-800 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> READY FOR RUNNER</span>'
+          : '<span class="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-amber-100 text-amber-800 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> PREPARING</span>';
+
+        return `
+          <div class="bg-white rounded-2xl border ${isReady ? 'border-emerald-300 ring-2 ring-emerald-500/20' : 'border-slate-200/90'} shadow-md p-6 flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[20px] text-brand-500">skillet</span>
+                  <span class="font-extrabold text-lg text-brand-900 tracking-tight">${t.table_number}</span>
+                </div>
+                <span class="font-mono text-xs px-2.5 py-1 rounded-lg bg-amber-100 text-amber-900 font-black">#${t.order_number}</span>
+              </div>
+
+              <!-- Special Request Alert Banner if present on ticket -->
+              ${t.special_instructions ? `
+                <div class="p-3 rounded-xl bg-amber-500 text-brand-950 font-extrabold text-xs flex items-center gap-2.5 shadow-sm border border-amber-600/30">
+                  <span class="material-symbols-outlined text-[20px] text-brand-950 shrink-0">warning</span>
+                  <div class="flex-1">
+                    <span class="uppercase tracking-wider text-[9px] block text-brand-900/80 font-black">Special Kitchen Request</span>
+                    <span class="font-black text-xs leading-tight">${t.special_instructions}</span>
+                  </div>
+                </div>
+              ` : ''}
+
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-1.5 text-xs text-red-600 font-bold bg-red-50 px-3 py-1.5 rounded-xl border border-red-100">
+                  <span class="material-symbols-outlined text-[16px]">schedule</span>
+                  <span>${t.elapsed_minutes}m elapsed timer</span>
+                </div>
+                ${statusBadge}
+              </div>
+
+              <div class="space-y-2 text-xs">
+                ${t.items.map(i => `
+                  <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 space-y-1">
+                    <div class="flex items-center justify-between">
+                      <span class="font-extrabold text-slate-800 text-xs">${i.quantity}x ${i.item_name}</span>
+                      ${i.modifiers_text ? `<span class="text-slate-400 font-medium text-[11px]">${i.modifiers_text}</span>` : ''}
+                    </div>
+                    ${i.notes ? `
+                      <div class="flex items-center gap-1.5 text-[11px] font-extrabold text-amber-800 bg-amber-50 px-2.5 py-1 rounded-lg border border-amber-200">
+                        <span class="material-symbols-outlined text-[14px] text-amber-600 shrink-0">edit_note</span>
+                        <span>Special Request: ${i.notes}</span>
+                      </div>
+                    ` : ''}
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <div class="pt-5 border-t border-slate-100 mt-4">
+              <button onclick="bumpKdsTicket('${t.id}')" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs flex items-center justify-center gap-2 shadow-md shadow-emerald-600/20 active:scale-[0.98] transition-all">
+                <span class="material-symbols-outlined text-[18px]">check_circle</span>
+                <span>${isReady ? 'Serve & Clear Ticket' : 'Mark Ready & Bump'}</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    async function bumpKdsTicket(ticketId) {
+      try {
+        await fetch(`/api/kds/tickets/${ticketId}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status: 'BUMPED' })
+        });
+        fetchKdsTickets();
+        fetchFloorPlan();
+      } catch (e) { console.error(e); }
+    }
+
+    // --- 4. CHECKOUT & PAYMENT ---
+    async function loadCheckoutTab() {
+      try {
+        const occTables = allTables.filter(t => t.current_order_id);
+        const select = document.getElementById('checkoutOrderSelect');
+        select.innerHTML = '<option value="">-- Choose Order to Settle --</option>';
+
+        occTables.forEach(t => {
+          const opt = document.createElement('option');
+          opt.value = t.current_order_id;
+          opt.textContent = `${t.table_number} (₹${t.current_bill_total.toFixed(2)})`;
+          select.appendChild(opt);
+        });
+
+        if (occTables.length > 0) {
+          select.value = occTables[0].current_order_id;
+          loadCheckoutForOrder(occTables[0].current_order_id);
+        }
+      } catch (e) { console.error(e); }
+    }
+
+    async function loadCheckoutForOrder(orderId) {
+      if (!orderId) return;
+      try {
+        const res = await fetch(`/api/checkout/preview/${orderId}`);
+        if (!res.ok) return;
+        currentCheckoutOrder = await res.json();
+
+        // Render check items
+        document.getElementById('checkoutItemsList').innerHTML = currentCheckoutOrder.items.map(i => `
+          <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs">
+            <div>
+              <span class="font-extrabold text-slate-800">${i.quantity}x ${i.item_name}</span>
+              <span class="text-slate-400 block text-[11px] font-medium">${i.modifiers_text || ''}</span>
+            </div>
+            <span class="font-mono font-black text-slate-800 text-sm">₹${i.item_total.toFixed(2)}</span>
+          </div>
+        `).join('');
+
+        updateCheckoutTotals();
+      } catch (e) { console.error(e); }
+    }
+
+    function setTip(rate) {
+      currentTipRate = rate;
+      document.querySelectorAll('#tipButtonsGroup button').forEach(b => {
+        b.className = 'tip-btn py-3 rounded-xl border text-xs font-extrabold bg-white text-slate-700 border-slate-200 hover:bg-slate-50 transition-all';
+      });
+      if (event && event.currentTarget) {
+        event.currentTarget.className = 'tip-btn py-3 rounded-xl border text-xs font-extrabold bg-brand-900 text-white border-brand-900 transition-all shadow-sm';
+      }
+      updateCheckoutTotals();
+    }
+
+    function updateCheckoutTotals() {
+      if (!currentCheckoutOrder) return;
+      const subtotal = currentCheckoutOrder.subtotal;
+      const tax = currentCheckoutOrder.tax;
+      const tip = subtotal * currentTipRate;
+      const total = subtotal + tax + tip;
+
+      document.getElementById('checkoutSubtotal').textContent = `₹${subtotal.toFixed(2)}`;
+      document.getElementById('checkoutTax').textContent = `₹${tax.toFixed(2)}`;
+      document.getElementById('checkoutTipDisplay').textContent = `₹${tip.toFixed(2)}`;
+      document.getElementById('checkoutTotalDue').textContent = `₹${total.toFixed(2)}`;
+    }
+
+    function calculateSplit() {
+      if (!currentCheckoutOrder) return;
+      const n = parseInt(document.getElementById('splitGuestsCount').value) || 2;
+      const total = currentCheckoutOrder.subtotal * (1 + 0.05 + currentTipRate);
+      const perGuest = total / n;
+      const box = document.getElementById('splitResultBox');
+      box.classList.remove('hidden');
+      box.innerHTML = `Split <strong>${n} ways</strong>: Exactly <strong>₹${perGuest.toFixed(2)}</strong> per guest.`;
+    }
+
+    function selectPaymentMethod(pm) {
+      currentPaymentMethod = pm;
+      document.querySelectorAll('.pm-btn').forEach(b => {
+        b.className = 'pm-btn p-4 rounded-2xl border border-slate-200 hover:border-slate-300 flex flex-col items-center gap-2 transition-all group';
+      });
+      const activeBtn = document.getElementById(pm === 'CREDIT_CARD' ? 'pm-card' : (pm === 'CASH' ? 'pm-cash' : 'pm-wallet'));
+      if (activeBtn) activeBtn.className = 'pm-btn p-4 rounded-2xl border-2 border-brand-500 bg-brand-50/60 flex flex-col items-center gap-2 transition-all group';
+
+      const cashSec = document.getElementById('cashTenderSection');
+      if (pm === 'CASH') cashSec.classList.remove('hidden');
+      else cashSec.classList.add('hidden');
+    }
+
+    async function processFinalPayment() {
+      if (!currentCheckoutOrder) {
+        alert('No active order selected.');
+        return;
+      }
+
+      const tipAmt = currentCheckoutOrder.subtotal * currentTipRate;
+      const payload = {
+        order_id: currentCheckoutOrder.order_id,
+        payment_method: currentPaymentMethod,
+        amount: currentCheckoutOrder.balance_due,
+        tip: tipAmt,
+        tendered_amount: currentPaymentMethod === 'CASH' ? parseFloat(document.getElementById('cashTenderInput').value || currentCheckoutOrder.balance_due) : null,
+        card_brand: 'Visa',
+        card_last4: '4242'
+      };
+
+      try {
+        const res = await fetch('/api/checkout/pay', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) {
+          const err = await res.json();
+          alert('Payment Failed: ' + (err.detail || 'Error'));
+          return;
+        }
+
+        // Show receipt modal
+        showReceiptModal(currentCheckoutOrder, payload.amount, tipAmt);
+        
+        // Immediately refresh all app modules
+        fetchFloorPlan();
+        fetchAnalytics();
+        fetchKdsTickets();
+        updateHeaderStats();
+      } catch (e) {
+        alert('Payment failed: ' + e.message);
+      }
+    }
+
+    function showReceiptModal(order, paid, tip) {
+      document.getElementById('receiptTime').textContent = new Date().toLocaleString();
+      document.getElementById('receiptModalItems').innerHTML = order.items.map(i => `
+        <div class="flex justify-between py-1">
+          <span class="font-medium">${i.quantity}x ${i.item_name}</span>
+          <span class="font-mono font-bold">₹${i.item_total.toFixed(2)}</span>
+        </div>
+      `).join('');
+
+      document.getElementById('receiptSubtotal').textContent = `₹${order.subtotal.toFixed(2)}`;
+      document.getElementById('receiptTax').textContent = `₹${order.tax.toFixed(2)}`;
+      document.getElementById('receiptTip').textContent = `₹${tip.toFixed(2)}`;
+      document.getElementById('receiptTotal').textContent = `₹${(paid + tip).toFixed(2)}`;
+      document.getElementById('receiptModal').classList.remove('hidden');
+    }
+
+    function closeReceiptModal() {
+      document.getElementById('receiptModal').classList.add('hidden');
+      switchTab('floorplan');
+    }
+
+    // --- 5. DAILY ANALYTICS (REALTIME METRICS & RUPEE TOTALS) ---
+    async function fetchAnalytics() {
+      try {
+        const res = await fetch('/api/analytics/summary');
+        if (!res.ok) return;
+        const data = await res.json();
+
+        // Render KPI cards
+        document.getElementById('analyticsKPIs').innerHTML = `
+          <div class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-md space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">Gross Sales</span>
+              <div class="w-10 h-10 rounded-xl bg-amber-50 text-brand-600 flex items-center justify-center">
+                <span class="material-symbols-outlined text-[20px]">trending_up</span>
+              </div>
+            </div>
+            <div class="text-3xl font-black text-brand-900 font-mono tracking-tight">₹${data.gross_revenue.toFixed(2)}</div>
+            <span class="text-xs text-emerald-600 font-bold flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px]">arrow_upward</span> Live shift revenue
+            </span>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-md space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">Settled Checks</span>
+              <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                <span class="material-symbols-outlined text-[20px]">receipt</span>
+              </div>
+            </div>
+            <div class="text-3xl font-black text-brand-900 font-mono tracking-tight">${data.total_orders}</div>
+            <span class="text-xs text-slate-500 font-medium">Avg check: <strong>₹${data.avg_check.toFixed(2)}</strong></span>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-md space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">Floor Seating</span>
+              <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
+                <span class="material-symbols-outlined text-[20px]">table_bar</span>
+              </div>
+            </div>
+            <div class="text-3xl font-black text-brand-900 font-mono tracking-tight">${data.tables.occupied} / ${data.tables.total}</div>
+            <span class="text-xs text-slate-500 font-medium">${data.tables.available} tables open for walk-ins</span>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-md space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">Barista Tips</span>
+              <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                <span class="material-symbols-outlined text-[20px]">savings</span>
+              </div>
+            </div>
+            <div class="text-3xl font-black text-emerald-600 font-mono tracking-tight">₹${data.total_tips.toFixed(2)}</div>
+            <span class="text-xs text-slate-500 font-medium">Auto-pooled across staff</span>
+          </div>
+        `;
+
+        // Top Selling items
+        document.getElementById('analyticsTopItems').innerHTML = data.top_items.map((i, idx) => `
+          <div class="flex items-center justify-between py-3 text-xs">
+            <div class="flex items-center gap-3">
+              <span class="w-6 h-6 rounded-lg bg-slate-100 text-slate-700 font-black text-center leading-6 shrink-0">${idx + 1}</span>
+              <span class="font-bold text-slate-800 text-sm">${i.item_name}</span>
+            </div>
+            <div class="text-right">
+              <span class="font-black font-mono text-brand-700 text-sm">${i.units_sold} sold</span>
+              <span class="text-slate-400 block text-[11px] font-mono">₹${i.total_sales.toFixed(2)}</span>
+            </div>
+          </div>
+        `).join('');
+
+        // Recent Transactions
+        document.getElementById('analyticsRecentTx').innerHTML = data.recent_transactions.map(tx => `
+          <div class="flex items-center justify-between py-3 text-xs">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center text-slate-600">
+                <span class="material-symbols-outlined text-[18px]">payments</span>
+              </div>
+              <div>
+                <span class="font-bold text-slate-800 text-sm">Order #${tx.order_number} (${tx.table_number || 'Takeaway'})</span>
+                <span class="text-slate-400 block text-[11px] font-medium">${tx.payment_method || 'UPI / CARD'} • ${tx.server_name}</span>
+              </div>
+            </div>
+            <span class="font-black font-mono text-emerald-600 text-base">₹${tx.total.toFixed(2)}</span>
+          </div>
+        `).join('');
+
+      } catch (e) { console.error(e); }
+    }
+
+    // --- 6. INVENTORY LOGIC ---
+    async function fetchInventory() {
+      try {
+        const res = await fetch('/api/inventory');
+        if (!res.ok) return;
+        const items = await res.json();
+
+        const categoryIcons = {
+          "Coffee": "coffee",
+          "Dairy": "local_drink",
+          "Dairy Alt": "local_drink",
+          "Produce": "nutrition",
+          "Bakery": "bakery_dining",
+          "Syrups": "liquor"
+        };
+
+        document.getElementById('inventoryTableBody').innerHTML = items.map(itm => {
+          let statusBadge = '<span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">In Stock</span>';
+          if (itm.status === 'LOW_STOCK') statusBadge = '<span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800">Low Stock</span>';
+          if (itm.status === 'CRITICAL') statusBadge = '<span class="px-3 py-1 rounded-full text-xs font-bold bg-red-100 text-red-800 animate-pulse">Critical</span>';
+
+          const icon = categoryIcons[itm.category] || "inventory";
+
+          return `
+            <tr class="hover:bg-slate-50/80 transition-colors">
+              <td class="py-4 px-6 font-bold text-slate-900 flex items-center gap-2.5">
+                <span class="material-symbols-outlined text-[18px] text-slate-400">${icon}</span>
+                ${itm.name}
+              </td>
+              <td class="py-4 px-6 text-slate-500 font-medium">${itm.category}</td>
+              <td class="py-4 px-6">
+                <!-- Plus and Minus Stepper to easily increase or decrease inventory -->
+                <div class="inline-flex items-center gap-1.5 bg-slate-50 p-1.5 rounded-xl border border-slate-200 shadow-sm">
+                  <button onclick="adjustInventoryStock('${itm.id}', -1)" title="Use / Decrease 1 ${itm.unit}" class="w-8 h-8 rounded-lg bg-white hover:bg-red-50 text-slate-700 hover:text-red-700 border border-slate-200 hover:border-red-300 font-black text-base flex items-center justify-center transition-all active:scale-90 shadow-sm">
+                    -
+                  </button>
+                  <div class="min-w-[65px] text-center px-1">
+                    <span class="font-mono font-black text-slate-900 text-sm block leading-tight">${itm.current_stock}</span>
+                    <span class="text-[10px] text-slate-400 font-bold uppercase block leading-tight">${itm.unit}</span>
+                  </div>
+                  <button onclick="adjustInventoryStock('${itm.id}', 1)" title="Add / Restock 1 ${itm.unit}" class="w-8 h-8 rounded-lg bg-white hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 border border-slate-200 hover:border-emerald-300 font-black text-base flex items-center justify-center transition-all active:scale-90 shadow-sm">
+                    +
+                  </button>
+                </div>
+              </td>
+              <td class="py-4 px-6 text-slate-400 font-mono">${itm.reorder_threshold} ${itm.unit}</td>
+              <td class="py-4 px-6">${statusBadge}</td>
+              <td class="py-4 px-6 text-right">
+                <div class="inline-flex items-center justify-end gap-1.5">
+                  <button onclick="adjustInventoryStock('${itm.id}', -5)" title="Use 5 ${itm.unit}" class="px-2.5 py-1.5 rounded-lg bg-red-50 hover:bg-red-100 text-red-700 font-extrabold text-[11px] transition-all active:scale-95 border border-red-200">
+                    -5
+                  </button>
+                  <button onclick="adjustInventoryStock('${itm.id}', 5)" title="Add 5 ${itm.unit}" class="px-2.5 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-extrabold text-[11px] transition-all active:scale-95 border border-emerald-200">
+                    +5
+                  </button>
+                  <button onclick="adjustInventoryStock('${itm.id}', 10)" title="Add 10 ${itm.unit}" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-all active:scale-95">
+                    +10
+                  </button>
+                </div>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      } catch (e) { console.error(e); }
+    }
+
+    async function adjustInventoryStock(id, delta) {
+      try {
+        const res = await fetch(`/api/inventory/${id}/adjust`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ delta: delta })
+        });
+        if (res.ok) {
+          fetchInventory();
+          fetchAnalytics();
+        }
+      } catch (e) { console.error('Failed to adjust stock:', e); }
+    }
+
+    async function restockItem(id, qty) {
+      try {
+        await fetch(`/api/inventory/${id}/restock`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ quantity_added: qty })
+        });
+        fetchInventory();
+      } catch (e) { console.error(e); }
+    }
+
+    // --- REALTIME WEBSOCKET (BROADCAST SYNCHRONIZATION ACROSS ALL TABS) ---
+    function initWebSocket() {
+      const proto = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+      const ws = new WebSocket(`${proto}//${window.location.host}/ws/pos`);
+      ws.onmessage = (event) => {
+        try {
+          const msg = JSON.parse(event.data);
+          console.log('Realtime event received:', msg.event);
+          // Always refresh all views so that Kitchen, Analytics, and Floor Plan stay in sync
+          fetchFloorPlan();
+          fetchKdsTickets();
+          fetchAnalytics();
+          fetchInventory();
+          updateHeaderStats();
+          if (currentCheckoutOrder) {
+            loadCheckoutForOrder(currentCheckoutOrder.order_id);
+          }
+        } catch (e) {}
+      };
+      ws.onclose = () => setTimeout(initWebSocket, 3000);
+    }
+
+    async function updateHeaderStats() {
+      try {
+        const res = await fetch('/api/shift/drawer');
+        if (res.ok) {
+          const data = await res.json();
+          document.getElementById('headerDrawerBalance').textContent = `₹${data.current_cash.toFixed(2)}`;
+        }
+      } catch (e) {}
+    }
+
+    // --- INITIAL BOOTSTRAP ---
+    document.addEventListener('DOMContentLoaded', () => {
+      fetchFloorPlan();
+      loadRegisterData();
+      fetchKdsTickets();
+      fetchAnalytics();
+      initWebSocket();
+    });
+  </script>
+</body>
+</html>
